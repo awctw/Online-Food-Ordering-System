@@ -15,5 +15,5 @@ public interface DataHandler {
 
     @Select("SELECT * FROM Restaurant")
     List<Restaurant> getAllRestaurants();
-    \
+
 }
