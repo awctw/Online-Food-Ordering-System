@@ -3,6 +3,8 @@ package com.cs304.group25.model;
 public class Review {
     private Integer reviewId;
     private Integer customerId;
+    private Integer restaurantId;
+    private Integer delivererId;
     private String comment;
     private Integer rating;
 
@@ -11,6 +13,8 @@ public class Review {
         this.customerId = customerId;
         this.comment = comment;
         this.rating = rating;
+        this.restaurantId = restaurantId;
+        this.delivererId = delivererId;
     }
 
     public Integer getReviewId() {

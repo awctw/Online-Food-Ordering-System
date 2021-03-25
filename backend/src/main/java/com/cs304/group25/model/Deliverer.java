@@ -2,7 +2,6 @@ package com.cs304.group25.model;
 
 public class Deliverer {
     private Integer delivererId;
-    private Integer ReviewId;
     private String licenseNum;
     private String carPlate;
     private Integer phoneNumber;

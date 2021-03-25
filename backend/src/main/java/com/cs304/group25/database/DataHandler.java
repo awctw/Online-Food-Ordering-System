@@ -1,10 +1,11 @@
 package com.cs304.group25.database;
 
-import com.cs304.group25.model.Restaurant;
+import com.cs304.group25.model.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.sql.Types;
 import java.util.List;
 
 @Mapper
