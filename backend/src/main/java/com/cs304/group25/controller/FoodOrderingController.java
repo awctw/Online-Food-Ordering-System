@@ -5,7 +5,6 @@ import com.cs304.group25.model.Deliverer;
 import com.cs304.group25.model.Restaurant;
 import com.cs304.group25.model.Review;
 import com.cs304.group25.service.FoodService;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +16,6 @@ import java.util.List;
 public class FoodOrderingController {
     @Autowired
     private FoodService foodService;
-
-    @GetMapping("/hello")
-    public String hello (){
-        return "hello";
-    }
 
     @GetMapping("/getAllRestaurant")
     public List<Restaurant> getAllRestaurant (){
@@ -44,19 +38,26 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getAllMatchingReviews")
-    public List<Review> getMatchingReview(int id){
+    public List<Review> getMatchingReview(@RequestParam int id){
         return foodService.getMatchingReview(id);
     }
 
-    @GetMapping("/updateAddress")
-    public List<Customer> updateAddress(Customer uCustomer, String uAddress){
-        uAddress = "New Street4";
-        uCustomer = new Customer(2223,"New Street2","Bill",888444,"aaaa","5y7u");
-        foodService.updateAddress(uCustomer, uAddress);
-        return getAllCustomer();
+    @PostMapping("/insertCustomer")
+    public Integer insertCustomer(@RequestBody Customer customer){
+        return foodService.insertCustomer(customer);
     }
 
+    @GetMapping("/updateAddress")
+    public String updateAddress(Customer uCustomer, String uAddress){
+         //uAddress = "New Street7";
+         //uCustomer = new Customer(2223,"New Street6","Bill",888444,"aaaa","5y7u");
+         return foodService.updateAddress(uCustomer, uAddress);
+    }
 
+    @PostMapping("/updateCustomer")
+    public Integer updateCustomer(@RequestBody Customer customer){
+        return foodService.updateCustomer(customer);
+    }
 
 }
 

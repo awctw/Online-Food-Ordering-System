@@ -6,10 +6,11 @@ public class Deliverer {
     private String carPlate;
     private Integer phoneNumber;
     private String name;
+    private Integer reviewId;
 
     public Deliverer(Integer delivererId, Integer reviewId, String licenseNum, String carPlate, Integer phoneNumber, String name) {
         this.delivererId = delivererId;
-        ReviewId = reviewId;
+        this.reviewId = reviewId;
         this.licenseNum = licenseNum;
         this.carPlate = carPlate;
         this.phoneNumber = phoneNumber;
@@ -25,11 +26,11 @@ public class Deliverer {
     }
 
     public Integer getReviewId() {
-        return ReviewId;
+        return reviewId;
     }
 
     public void setReviewId(Integer reviewId) {
-        ReviewId = reviewId;
+        this.reviewId = reviewId;
     }
 
     public String getLicenseNum() {
