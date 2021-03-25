@@ -18,11 +18,6 @@ public class FoodOrderingController {
     @Autowired
     private FoodService foodService;
 
-    @GetMapping("/hello")
-    public String hello (){
-        return "hello";
-    }
-
     @GetMapping("/getAllRestaurant")
     public List<Restaurant> getAllRestaurant (){
         return foodService.getAllRestaurant();
@@ -44,19 +39,19 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getAllMatchingReviews")
-    public List<Review> getMatchingReview(int id){
+    public List<Review> getMatchingReview(@RequestParam int id){
         return foodService.getMatchingReview(id);
     }
 
-    @GetMapping("/updateAddress")
-    public List<Customer> updateAddress(Customer uCustomer, String uAddress){
-        uAddress = "New Street4";
-        uCustomer = new Customer(2223,"New Street2","Bill",888444,"aaaa","5y7u");
-        foodService.updateAddress(uCustomer, uAddress);
-        return getAllCustomer();
+    @PostMapping("/insertCustomer")
+    public Integer insertCustomer(@RequestBody Customer customer){
+        return foodService.insertCustomer(customer);
     }
 
-
+    @PostMapping("/updateCustomer")
+    public Integer updateCustomer(@RequestBody Customer customer){
+        return foodService.updateCustomer(customer);
+    }
 
 }
 
