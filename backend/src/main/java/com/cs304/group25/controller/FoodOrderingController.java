@@ -1,21 +1,20 @@
 package com.cs304.group25.controller;
 
-import com.cs304.group25.model.Customer;
-import com.cs304.group25.model.Deliverer;
-import com.cs304.group25.model.Restaurant;
-import com.cs304.group25.model.Review;
+import com.cs304.group25.model.*;
 import com.cs304.group25.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin
 public class FoodOrderingController {
     @Autowired
     private FoodService foodService;
+
 
     @GetMapping("/getAllRestaurant")
     public List<Restaurant> getAllRestaurant (){
@@ -37,9 +36,33 @@ public class FoodOrderingController {
         return foodService.getAllReviews();
     }
 
+    @GetMapping("/getAllPayments")
+    public List<Payment> getAllPayment (){
+        return foodService.getAllPayments();
+    }
+
     @GetMapping("/getAllMatchingReviews")
     public List<Review> getMatchingReview(@RequestParam int id){
         return foodService.getMatchingReview(id);
+    }
+
+    @GetMapping("/filterByCategory")
+    public List<Restaurant.RestaurantCol> filterByCategory(String category) {
+        //category = "Dessert";
+        return foodService.filterByCategory(category);
+    }
+
+    @GetMapping("/filterByRating")
+    public List<Restaurant> filterByRating(Integer rating) {
+        //rating = 3;
+        return foodService.filterByRating(rating);
+    }
+
+    // Generated new table getRestaurantMenuItems
+    @GetMapping("/getRestaurantMenuItems")
+    public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType) {
+        //menuType = "Lunch";
+        return foodService.getRestaurantMenuItems(menuType);
     }
 
     @PostMapping("/insertCustomer")
@@ -47,16 +70,14 @@ public class FoodOrderingController {
         return foodService.insertCustomer(customer);
     }
 
-    @GetMapping("/updateAddress")
-    public String updateAddress(Customer uCustomer, String uAddress){
-         //uAddress = "New Street7";
-         //uCustomer = new Customer(2223,"New Street6","Bill",888444,"aaaa","5y7u");
-         return foodService.updateAddress(uCustomer, uAddress);
-    }
-
     @PostMapping("/updateCustomer")
     public Integer updateCustomer(@RequestBody Customer customer){
         return foodService.updateCustomer(customer);
+    }
+
+    @PostMapping("/insertPayment")
+    public Integer insertPayment(@RequestBody Payment payment){
+        return foodService.insertPayment(payment);
     }
 
 }

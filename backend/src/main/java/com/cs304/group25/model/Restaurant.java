@@ -1,5 +1,7 @@
 package com.cs304.group25.model;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Restaurant {
     private Integer restaurantId;
     private String name;
@@ -7,6 +9,45 @@ public class Restaurant {
     private String address;
     private String postcode;
     private Integer operatingHours;
+
+    public static class RestaurantCol {
+        private Integer restaurantId;
+        private String name;
+        private Integer operatingHours;
+
+        public Integer getRestaurantId() {
+            return restaurantId;
+        }
+
+        public void setRestaurantId(Integer restaurantId) {
+            this.restaurantId = restaurantId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getOperatingHours() {
+            return operatingHours;
+        }
+
+        public void setOperatingHours(Integer operatingHours) {
+            this.operatingHours = operatingHours;
+        }
+
+        public RestaurantCol(Integer restaurantId, String name, Integer operatingHours) {
+            this.restaurantId = restaurantId;
+            this.name = name;
+            this.operatingHours = operatingHours;
+        }
+
+
+    }
+
 
     public Restaurant(Integer restaurantId, String name, String category, String address, String postcode, Integer operatingHours) {
         this.restaurantId = restaurantId;
@@ -65,3 +106,6 @@ public class Restaurant {
         this.operatingHours = operatingHours;
     }
 }
+
+
+

@@ -5,12 +5,31 @@ public class Food {
     private Integer menuId;
     private Double price;
     private String description;
+    private String foodName;
 
-    public Food(Integer foodItemId, Integer menuId, Double price, String description) {
+
+    public Food(Integer foodItemId, Integer menuId, Double price, String description, String foodName) {
         this.foodId = foodItemId;
         this.menuId = menuId;
         this.price = price;
         this.description = description;
+        this.foodName = foodName;
+    }
+
+    public Integer getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public Integer getFoodItemId() {
