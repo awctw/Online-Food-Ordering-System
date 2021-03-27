@@ -84,4 +84,14 @@ public interface DataHandler {
 
     @Select("SELECT R.RestaurantID, R.Name, Food.foodName, Food.Price, Food.Description FROM Restaurant R INNER JOIN Menu ON R.RestaurantID = Menu.RestaurantID INNER JOIN Food ON Food.MenuID = Menu.MenuID WHERE Menu.Type = #{menuType}")
     List<RestaurantMenuItems> getRestaurantMenuItems(String menuType);
+
+    @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest" +
+            "INNER JOIN Review r ON rest.RestaurantID = r.RestaurantID" +
+            "GROUP BY rest.Name ORDER BY rest.Name DESC")
+    List<Restaurant> showAvgRating(int rating);
+
+    @Select("SELECT r.Name FROM Restaurant r, Order o, Customer c" +
+            "WHERE c.CustomerID = o.CustomerID AND r.RestaurantID = o.RestaurantID" +
+            "GROUP BY r.Name HAVING COUNT(*) > 1")
+    List<Restaurant> getRestaurant(Restaurant restaurant);
 }

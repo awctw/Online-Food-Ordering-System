@@ -51,7 +51,6 @@ public class FoodService {
         return count;
     }
 
-
     public Integer updateCustomer(Customer customer) {
         logger.info("update customer" + customer);
         return dataHandler.updateCustomer(customer);
@@ -71,5 +70,13 @@ public class FoodService {
 
     public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType) {
         return dataHandler.getRestaurantMenuItems(menuType);
+    }
+
+    public List<Restaurant> showAvgRating(int rating) {
+        return dataHandler.showAvgRating(rating);
+    }
+
+    public List<Restaurant> getRestaurant(Restaurant restaurant) {
+        return dataHandler.getRestaurant(restaurant);
     }
 }
