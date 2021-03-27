@@ -38,7 +38,7 @@ public class FoodService {
         return dataHandler.getAllPayments();
     }
 
-    public List<Review> getMatchingReview(int id) {
+    public List<Review> getMatchingReview(Integer id) {
         return dataHandler.getMatchingRestaurantReviews(id);
     }
 
@@ -52,9 +52,9 @@ public class FoodService {
     }
 
 
-    public Integer updateCustomer(Customer customer) {
-        logger.info("update customer" + customer);
-        return dataHandler.updateCustomer(customer);
+    public Integer updateCustomerAddress(Customer customer, String address) {
+        logger.info("update customer address" + customer);
+        return dataHandler.updateCustomerAddress(customer, address);
     }
 
     public Integer insertPayment(Payment payment) {
@@ -71,5 +71,9 @@ public class FoodService {
 
     public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType) {
         return dataHandler.getRestaurantMenuItems(menuType);
+    }
+
+    public void deleteOrderDetails(Order order, Integer id){
+         dataHandler.deleteOrderDetails(order, id);
     }
 }

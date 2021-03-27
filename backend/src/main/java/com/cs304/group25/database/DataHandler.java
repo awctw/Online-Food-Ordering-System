@@ -11,10 +11,10 @@ import java.util.Objects;
 public interface DataHandler {
 
     @Insert({"INSERT INTO Customer(Address,Name,PhoneNumber,Email,PostCode)" +
-            "VALUES (#{Address},#{Name},#{PhoneNumber},#{Email},#{PostCode})"})
+            "VALUES (#{address},#{name},#{phoneNumber},#{email},#{postCode})"})
     int insertCustomer(Customer customer);
 
-    @Insert({"INSERT INTO Order(RestaurantID,CustomerID,Notes,Status,TotalPrice) " +
+    @Insert({"INSERT INTO 'Order'(RestaurantID,CustomerID,Notes,Status,TotalPrice)" +
             "VALUES (#{RestaurantID},#{CustomerID},#{Notes},#{Status},#{TotalPrice})"})
     int insertOrder(Order order);
 
@@ -42,8 +42,8 @@ public interface DataHandler {
             "VALUES (#{MenuID},#{Price},#{Description},#{Name})"})
     int insertFood(Food food);
 
-    @Insert({"INSERT INTO OrderDetail(OrderID,FoodID,Quantity) " +
-            "VALUES (#{OrderID},#{FoodID},#{Quantity})"})
+    @Insert({"INSERT INTO OrderDetail(OrderIDDetail,FoodID,Quantity)" +
+            "VALUES (#{OrderIDDetail},#{FoodID},#{Quantity})"})
     int insertOrderDetail(OrderDetail orderDetail);
 
     @Insert({"INSERT INTO Review(CustomerID,DelivererID,RestaurantID,Comment,Rating)" +
@@ -70,11 +70,10 @@ public interface DataHandler {
     List<Review> getAllReviews();
 
     @Select("SELECT * FROM Review WHERE #{id} = Review.RestaurantID")
-    List<Review> getMatchingRestaurantReviews(int id);
+    List<Review> getMatchingRestaurantReviews(Integer id);
 
-    @Update("Update Customer SET Address=#{address},Name=#{name},PhoneNumber=#{phoneNumber}"+
-            ",Email=#{email},PostCode=#{postcode} WHERE CustomerID = #{customerId}" )
-    int updateCustomer(Customer customer);
+    @Update("Update Customer SET Address = #{newAddress} WHERE CustomerID = #{customer.customerId}" )
+    int updateCustomerAddress(Customer customer, String newAddress);
 
     @Select("SELECT R.restaurantID, R.name, R.operatingHours FROM Restaurant R WHERE #{cat} = R.Category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
@@ -84,4 +83,7 @@ public interface DataHandler {
 
     @Select("SELECT R.RestaurantID, R.Name, Food.foodName, Food.Price, Food.Description FROM Restaurant R INNER JOIN Menu ON R.RestaurantID = Menu.RestaurantID INNER JOIN Food ON Food.MenuID = Menu.MenuID WHERE Menu.Type = #{menuType}")
     List<RestaurantMenuItems> getRestaurantMenuItems(String menuType);
+
+    @Delete("DELETE FROM OrderDetail WHERE OrderDetail.OrderDetailID = #{id} AND #{order.orderId} = OrderDetail.OrderIDDetail")
+    void deleteOrderDetails(Order order, Integer id);
 }

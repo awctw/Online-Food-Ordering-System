@@ -7,15 +7,15 @@ public class Customer {
     private String name;
     private Integer phoneNumber;
     private String email;
-    private String postcode;
+    private String postCode;
 
-    public Customer(Integer customerId, String address, String name, Integer phoneNumber, String email, String postcode) {
+    public Customer(Integer customerId, String address, String name, Integer phoneNumber, String email, String postCode) {
         this.customerId = customerId;
         this.address = address;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.postcode = postcode;
+        this.postCode = postCode;
     }
 
     public Integer getCustomerId() {
@@ -58,11 +58,11 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostCode(String postcode) {
+        this.postCode = postCode;
     }
 }
