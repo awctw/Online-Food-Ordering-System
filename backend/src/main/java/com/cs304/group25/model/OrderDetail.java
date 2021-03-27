@@ -2,12 +2,12 @@ package com.cs304.group25.model;
 
 public class OrderDetail {
     private Integer orderDetailId;
-    private Integer orderId;
+    private Integer orderIdDetail;
     private Integer foodId;
 
-    public OrderDetail(Integer orderDetailId, Integer orderId, Integer foodId) {
+    public OrderDetail(Integer orderDetailId, Integer orderIdDetail, Integer foodId) {
         this.orderDetailId = orderDetailId;
-        this.orderId = orderId;
+        this.orderIdDetail = orderIdDetail;
         this.foodId = foodId;
     }
 
@@ -19,12 +19,12 @@ public class OrderDetail {
         this.orderDetailId = orderDetailId;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getOrderIdDetail() {
+        return orderIdDetail;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderIdDetail(Integer orderId) {
+        this.orderIdDetail = orderId;
     }
 
     public Integer getFoodId() {

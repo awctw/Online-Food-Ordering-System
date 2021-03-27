@@ -41,18 +41,18 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getAllMatchingReviews")
-    public List<Review> getMatchingReview(@RequestParam int id){
+    public List<Review> getMatchingReview(@RequestParam Integer id){
         return foodService.getMatchingReview(id);
     }
 
     @GetMapping("/filterByCategory")
-    public List<Restaurant.RestaurantCol> filterByCategory(String category) {
+    public List<Restaurant.RestaurantCol> filterByCategory(@RequestParam String category) {
         //category = "Dessert";
         return foodService.filterByCategory(category);
     }
 
     @GetMapping("/filterByRating")
-    public List<Restaurant> filterByRating(Integer rating) {
+    public List<Restaurant> filterByRating(@RequestParam Integer rating) {
         //rating = 3;
         return foodService.filterByRating(rating);
     }
@@ -64,7 +64,7 @@ public class FoodOrderingController {
 
     // Generated new table getRestaurantMenuItems
     @GetMapping("/getRestaurantMenuItems")
-    public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType) {
+    public List<RestaurantMenuItems> getRestaurantMenuItems(@RequestParam String menuType) {
         //menuType = "Lunch";
         return foodService.getRestaurantMenuItems(menuType);
     }
@@ -79,14 +79,20 @@ public class FoodOrderingController {
         return foodService.insertCustomer(customer);
     }
 
-    @PostMapping("/updateCustomer")
-    public Integer updateCustomer(@RequestBody Customer customer){
-        return foodService.updateCustomer(customer);
+    // Should change into PutMapping?
+    @PostMapping("/updateCustomerAddress")
+    public Integer updateCustomer(@RequestBody Customer customer, @RequestParam String address){
+        return foodService.updateCustomerAddress(customer, address);
     }
 
     @PostMapping("/insertPayment")
     public Integer insertPayment(@RequestBody Payment payment){
         return foodService.insertPayment(payment);
+    }
+
+    @DeleteMapping("/deleteOrderDetails")
+    public void deleteOrderDetails(@RequestBody Order order, @RequestParam Integer id) {
+        foodService.deleteOrderDetails(order, id);
     }
 
 }
