@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class FoodService {
@@ -48,9 +48,13 @@ public class FoodService {
         if (count != 1) {
            logger.error("fail to insert new customer");
         }
+        int primaryID = lastPrimaryId();
         return count;
     }
 
+    public Integer lastPrimaryId(){
+        return dataHandler.lastPrimaryId();
+    }
 
     public Integer updateCustomerAddress(Customer customer, String address) {
         logger.info("update customer address" + customer);
@@ -75,5 +79,36 @@ public class FoodService {
 
     public void deleteOrderDetails(Order order, Integer id){
          dataHandler.deleteOrderDetails(order, id);
+    }
+
+    public Integer insertOrder(TotalOrder totalOrder) {
+        logger.info("insert total order" + totalOrder);
+        //insert order into Order table
+
+        System.out.println(totalOrder.getOrder());
+        int count = dataHandler.insertOrder(totalOrder.getOrder());
+        if (count != 1) {
+            logger.error("fail to insert new order");
+        }
+        int orderID = dataHandler.lastPrimaryId();
+        System.out.println(orderID);
+        List<OrderDetail> list = totalOrder.getOrderDetailList();
+        for (OrderDetail orderDetail : list) {
+            // set orderID to orderDetail
+            orderDetail.setOrderId(orderID);
+            // insert into orderDetail
+            dataHandler.insertOrderDetail(orderDetail);
+        }
+
+        // insert into PickUp or Delivery table
+        if (totalOrder.isPickUp()) {
+            PickUp pickUp = new PickUp(orderID);
+            dataHandler.insertPickUp(pickUp);
+        } else {
+            Date date = new Date();
+            Delivery delivery = new Delivery(orderID, date);
+            dataHandler.insertDelivery(delivery);
+        }
+        return 1;
     }
 }

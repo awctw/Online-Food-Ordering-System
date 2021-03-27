@@ -2,13 +2,15 @@ package com.cs304.group25.model;
 
 public class OrderDetail {
     private Integer orderDetailId;
-    private Integer orderIdDetail;
+    private Integer orderId;
     private Integer foodId;
+    private Integer quantity;
 
-    public OrderDetail(Integer orderDetailId, Integer orderIdDetail, Integer foodId) {
+    public OrderDetail(Integer orderDetailId, Integer orderId, Integer foodId, Integer quantity) {
         this.orderDetailId = orderDetailId;
-        this.orderIdDetail = orderIdDetail;
+        this.orderId = orderId;
         this.foodId = foodId;
+        this.quantity = quantity;
     }
 
     public Integer getOrderDetailId() {
@@ -19,12 +21,12 @@ public class OrderDetail {
         this.orderDetailId = orderDetailId;
     }
 
-    public Integer getOrderIdDetail() {
-        return orderIdDetail;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderIdDetail(Integer orderId) {
-        this.orderIdDetail = orderId;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public Integer getFoodId() {
@@ -33,5 +35,23 @@ public class OrderDetail {
 
     public void setFoodId(Integer foodId) {
         this.foodId = foodId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "orderDetailId=" + orderDetailId +
+                ", orderId=" + orderId +
+                ", foodId=" + foodId +
+                ", quantity=" + quantity +
+                '}';
     }
 }

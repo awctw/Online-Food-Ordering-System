@@ -86,5 +86,11 @@ public class FoodOrderingController {
         foodService.deleteOrderDetails(order, id);
     }
 
+    @PostMapping("/insertOrder")
+    public Integer insertOrder(@RequestBody TotalOrder totalOrder) {
+        System.out.println(totalOrder);
+        return foodService.insertOrder(totalOrder);
+    }
+
 }
 

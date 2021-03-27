@@ -1,14 +1,13 @@
 package com.cs304.group25.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Delivery {
     private Integer orderId;
     private Integer deliveryId;
     private Date eta;
 
-    public Delivery(Integer orderId, Integer deliveryId, Date eta) {
-        this.orderId = orderId;
+    public Delivery(Integer deliveryId, Date eta) {
         this.deliveryId = deliveryId;
         this.eta = eta;
     }
@@ -35,5 +34,14 @@ public class Delivery {
 
     public void setEta(Date eta) {
         this.eta = eta;
+    }
+
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "orderId=" + orderId +
+                ", deliveryId=" + deliveryId +
+                ", eta=" + eta +
+                '}';
     }
 }

@@ -4,9 +4,8 @@ public class PickUp {
     private Integer orderId;
     private Integer pickUpId;
 
-    public PickUp(Integer orderId, Integer pickUpId) {
+    public PickUp(Integer orderId) {
         this.orderId = orderId;
-        this.pickUpId = pickUpId;
     }
 
     public Integer getOrderId() {
@@ -23,5 +22,13 @@ public class PickUp {
 
     public void setPickUpId(Integer pickUpId) {
         this.pickUpId = pickUpId;
+    }
+
+    @Override
+    public String toString() {
+        return "PickUp{" +
+                "orderId=" + orderId +
+                ", pickUpId=" + pickUpId +
+                '}';
     }
 }

@@ -10,20 +10,20 @@ import java.util.Objects;
 @Mapper
 public interface DataHandler {
 
-    @Insert({"INSERT INTO Customer(Address,Name,PhoneNumber,Email,PostCode)" +
+    @Insert({"INSERT INTO Customer(Address,Name,PhoneNumber,Email,PostCode) " +
             "VALUES (#{address},#{name},#{phoneNumber},#{email},#{postCode})"})
     int insertCustomer(Customer customer);
 
-    @Insert({"INSERT INTO 'Order'(RestaurantID,CustomerID,Notes,Status,TotalPrice)" +
-            "VALUES (#{RestaurantID},#{CustomerID},#{Notes},#{Status},#{TotalPrice})"})
+    @Insert({"INSERT INTO `Order`(RestaurantID,CustomerID,Notes,Status,TotalPrice) " +
+            "VALUES (#{restaurantId},#{customerId},#{notes},#{status},#{totalPrice})"})
     int insertOrder(Order order);
 
-    @Insert({"INSERT INTO Delivery(OrderID,DelivererID,ETA) " +
-            "VALUES (#{OrderID},#{DelivererID})"})
+    @Insert({"INSERT INTO Delivery(OrderID,ETA) " +
+            "VALUES (#{orderId},#{eta})"})
     int insertDelivery(Delivery delivery);
 
     @Insert({"INSERT INTO PickUp(OrderID) " +
-            "VALUES (#{OrderID})"})
+            "VALUES (#{orderId})"})
     int insertPickUp(PickUp pickUp);
 
     @Insert({"INSERT INTO Deliverer(LicenseNum,CarPlate,PhoneNumber,Name) " +
@@ -42,8 +42,8 @@ public interface DataHandler {
             "VALUES (#{MenuID},#{Price},#{Description},#{Name})"})
     int insertFood(Food food);
 
-    @Insert({"INSERT INTO OrderDetail(OrderIDDetail,FoodID,Quantity)" +
-            "VALUES (#{OrderIDDetail},#{FoodID},#{Quantity})"})
+    @Insert({"INSERT INTO OrderDetail(orderID,foodID,quantity)" +
+            "VALUES (#{orderId},#{foodId},#{quantity})"})
     int insertOrderDetail(OrderDetail orderDetail);
 
     @Insert({"INSERT INTO Review(CustomerID,DelivererID,RestaurantID,Comment,Rating)" +
@@ -86,4 +86,7 @@ public interface DataHandler {
 
     @Delete("DELETE FROM OrderDetail WHERE OrderDetail.OrderDetailID = #{id} AND #{order.orderId} = OrderDetail.OrderIDDetail")
     void deleteOrderDetails(Order order, Integer id);
+
+    @Select("SELECT LAST_INSERT_ID()")
+    Integer lastPrimaryId();
 }
