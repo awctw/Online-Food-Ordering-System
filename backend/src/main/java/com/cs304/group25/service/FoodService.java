@@ -81,6 +81,14 @@ public class FoodService {
          dataHandler.deleteOrderDetails(order, id);
     }
 
+    public List<Restaurant> showAvgRating(int rating) {
+        return dataHandler.showAvgRating(rating);
+    }
+
+    public List<Restaurant> getRestaurant(Restaurant restaurant) {
+        return dataHandler.getRestaurant(restaurant);
+    }
+
     public Integer insertOrder(TotalOrder totalOrder) {
         logger.info("insert total order" + totalOrder);
         //insert order into Order table

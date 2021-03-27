@@ -89,4 +89,16 @@ public interface DataHandler {
 
     @Select("SELECT LAST_INSERT_ID()")
     Integer lastPrimaryId();
+
+    // Aggregation 1
+    @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest" +
+            "INNER JOIN Review r ON rest.RestaurantID = r.RestaurantID" +
+            "GROUP BY rest.Name ORDER BY rest.Name DESC")
+    List<Restaurant> showAvgRating(int rating);
+
+    // Aggregation 2
+    @Select("SELECT r.Name FROM Restaurant r, Order o, Customer c" +
+            "WHERE c.CustomerID = o.CustomerID AND r.RestaurantID = o.RestaurantID" +
+            "GROUP BY r.Name HAVING COUNT(*) > 1")
+    List<Restaurant> getRestaurant(Restaurant restaurant);
 }

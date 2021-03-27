@@ -15,7 +15,6 @@ public class FoodOrderingController {
     @Autowired
     private FoodService foodService;
 
-
     @GetMapping("/getAllRestaurant")
     public List<Restaurant> getAllRestaurant (){
         return foodService.getAllRestaurant();
@@ -58,11 +57,21 @@ public class FoodOrderingController {
         return foodService.filterByRating(rating);
     }
 
+    @GetMapping("/showAvgRating")
+    public List<Restaurant> showAvgRating(Integer rating) {
+        return foodService.showAvgRating(rating);
+    }
+
     // Generated new table getRestaurantMenuItems
     @GetMapping("/getRestaurantMenuItems")
     public List<RestaurantMenuItems> getRestaurantMenuItems(@RequestParam String menuType) {
         //menuType = "Lunch";
         return foodService.getRestaurantMenuItems(menuType);
+    }
+
+    @GetMapping("/getRestaurant")
+    public List<Restaurant> getRestaurant(Restaurant restaurant) {
+        return foodService.getRestaurant(restaurant);
     }
 
     @PostMapping("/insertCustomer")
