@@ -87,11 +87,13 @@ public interface DataHandler {
     @Delete("DELETE FROM OrderDetail WHERE OrderDetail.OrderDetailID = #{id} AND #{order.orderId} = OrderDetail.OrderIDDetail")
     void deleteOrderDetails(Order order, Integer id);
 
+    // Aggregation 1
     @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest" +
             "INNER JOIN Review r ON rest.RestaurantID = r.RestaurantID" +
             "GROUP BY rest.Name ORDER BY rest.Name DESC")
     List<Restaurant> showAvgRating(int rating);
 
+    // Aggregation 2
     @Select("SELECT r.Name FROM Restaurant r, Order o, Customer c" +
             "WHERE c.CustomerID = o.CustomerID AND r.RestaurantID = o.RestaurantID" +
             "GROUP BY r.Name HAVING COUNT(*) > 1")

@@ -55,9 +55,6 @@ public class FoodService {
     public Integer updateCustomerAddress(Customer customer, String address) {
         logger.info("update customer address" + customer);
         return dataHandler.updateCustomerAddress(customer, address);
-    public Integer updateCustomer(Customer customer) {
-        logger.info("update customer" + customer);
-        return dataHandler.updateCustomer(customer);
     }
 
     public Integer insertPayment(Payment payment) {
