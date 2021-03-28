@@ -15,8 +15,8 @@ public interface DataHandler {
             "VALUES (#{restaurantId},#{customerId},#{notes},#{status},#{totalPrice})"})
     int insertOrder(Order order);
 
-    @Insert({"INSERT INTO Delivery(orderId,eta) " +
-            "VALUES (#{orderId},#{eta})"})
+    @Insert({"INSERT INTO Delivery(orderId,delivererId,eta) " +
+            "VALUES (#{orderId},#{delivererId},#{eta})"})
     int insertDelivery(Delivery delivery);
 
     @Insert({"INSERT INTO PickUp(orderId) " +
@@ -78,7 +78,7 @@ public interface DataHandler {
     @Select("SELECT * FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId WHERE rating >= #{rating}")
     List<Restaurant> filterByRating(int rating);
 
-    @Select("SELECT R.restaurantID, R.name, Food.foodName, Food.price, Food.description FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId INNER JOIN Food ON Food.menuId = Menu.menuId WHERE Menu.type = #{menuType}")
+    @Select("SELECT R.restaurantId, R.name, Food.foodName, Food.price, Food.description FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId INNER JOIN Food ON Food.menuId = Menu.menuId WHERE Menu.type = #{menuType}")
     List<RestaurantMenuItems> getRestaurantMenuItems(String menuType);
 
     @Delete("DELETE FROM OrderDetail WHERE OrderDetail.orderDetailId = #{id} AND #{order.orderId} = OrderDetail.orderId")
@@ -97,13 +97,14 @@ public interface DataHandler {
 
     // Aggregation 1
     @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest, Review r " +
-            "WHERE rest.RestaurantID = r.RestaurantID " +
+            "WHERE rest.restaurantId = r.restaurantId " +
             "GROUP BY rest.Name ORDER BY AVG(r.rating) DESC")
     List<Restaurant> showAvgRating();
 
+
     // Aggregation 2 will return nulls other than the name
     @Select("SELECT r.name FROM Restaurant r, `Order` o, Customer c " +
-            "WHERE c.customerId = o.customerId AND o.RestaurantID = r.RestaurantID " +
+            "WHERE c.customerId = o.customerId AND o.RestaurantId = r.RestaurantId " +
             "GROUP BY r.Name HAVING COUNT(*) > 1")
     List<Restaurant> getRestaurantOrders();
 

@@ -5,11 +5,11 @@ public class Customer {
     private Integer customerId;
     private String address;
     private String name;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
     private String postCode;
 
-    public Customer(Integer customerId, String address, String name, Integer phoneNumber, String email, String postCode) {
+    public Customer(Integer customerId, String address, String name, String phoneNumber, String email, String postCode) {
         this.customerId = customerId;
         this.address = address;
         this.name = name;
@@ -42,11 +42,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

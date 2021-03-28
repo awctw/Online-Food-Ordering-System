@@ -64,4 +64,16 @@ public class Payment {
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "cardId='" + cardId + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", cardType='" + cardType + '\'' +
+                ", expireDate=" + expireDate +
+                ", cardHolderName='" + cardHolderName + '\'' +
+                ", securityCode='" + securityCode + '\'' +
+                '}';
+    }
 }

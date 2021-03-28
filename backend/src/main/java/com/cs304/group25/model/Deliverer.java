@@ -4,13 +4,11 @@ public class Deliverer {
     private Integer delivererId;
     private String licenseNum;
     private String carPlate;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String name;
-    private Integer reviewId;
 
-    public Deliverer(Integer delivererId, Integer reviewId, String licenseNum, String carPlate, Integer phoneNumber, String name) {
+    public Deliverer(Integer delivererId, String licenseNum, String carPlate, String phoneNumber, String name) {
         this.delivererId = delivererId;
-        this.reviewId = reviewId;
         this.licenseNum = licenseNum;
         this.carPlate = carPlate;
         this.phoneNumber = phoneNumber;
@@ -23,14 +21,6 @@ public class Deliverer {
 
     public void setDelivererId(Integer delivererId) {
         this.delivererId = delivererId;
-    }
-
-    public Integer getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(Integer reviewId) {
-        this.reviewId = reviewId;
     }
 
     public String getLicenseNum() {
@@ -49,11 +39,11 @@ public class Deliverer {
         this.carPlate = carPlate;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

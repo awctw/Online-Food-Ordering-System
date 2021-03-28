@@ -8,7 +8,7 @@ public class Restaurant {
     private String category;
     private String address;
     private String postCode;
-    private Integer operatingHours;
+    private String operatingHours;
 
     public static class RestaurantCol {
         private Integer restaurantId;
@@ -48,7 +48,7 @@ public class Restaurant {
 
     }
 
-    public Restaurant(Integer restaurantId, String name, String category, String address, String postCode, Integer operatingHours) {
+    public Restaurant(Integer restaurantId, String name, String category, String address, String postCode, String operatingHours) {
         this.restaurantId = restaurantId;
         this.name = name;
         this.category = category;
@@ -97,11 +97,11 @@ public class Restaurant {
         this.postCode = postCode;
     }
 
-    public Integer getOperatingHours() {
+    public String getOperatingHours() {
         return operatingHours;
     }
 
-    public void setOperatingHours(Integer operatingHours) {
+    public void setOperatingHours(String operatingHours) {
         this.operatingHours = operatingHours;
     }
 }

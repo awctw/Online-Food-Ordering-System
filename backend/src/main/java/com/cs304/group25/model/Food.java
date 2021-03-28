@@ -63,4 +63,15 @@ public class Food {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "foodId=" + foodId +
+                ", menuId=" + menuId +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", foodName='" + foodName + '\'' +
+                '}';
+    }
 }

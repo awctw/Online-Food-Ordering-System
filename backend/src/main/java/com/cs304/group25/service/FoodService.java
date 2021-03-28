@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.Date;
 import java.util.List;
@@ -107,7 +108,7 @@ public class FoodService {
             logger.error("fail to insert new order");
         }
         int orderID = dataHandler.lastPrimaryId();
-        System.out.println(orderID);
+
         List<OrderDetail> list = totalOrder.getOrderDetailList();
         for (OrderDetail orderDetail : list) {
             // set orderID to orderDetail
@@ -121,8 +122,9 @@ public class FoodService {
             PickUp pickUp = new PickUp(orderID);
             dataHandler.insertPickUp(pickUp);
         } else {
+            // I simplify the logic here.. choose a random deliverer and set eta to current time
             Date date = new Date();
-            Delivery delivery = new Delivery(orderID, date);
+            Delivery delivery = new Delivery(orderID, ThreadLocalRandom.current().nextInt(1,11), date);
             dataHandler.insertDelivery(delivery);
         }
         return 1;

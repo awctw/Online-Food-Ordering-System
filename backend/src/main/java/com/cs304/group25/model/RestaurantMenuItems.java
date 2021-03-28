@@ -57,4 +57,14 @@ public class RestaurantMenuItems {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "RestaurantMenuItems{" +
+                "price=" + price +
+                ", description='" + description + '\'' +
+                ", foodName='" + foodName + '\'' +
+                ", restaurantId=" + restaurantId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
