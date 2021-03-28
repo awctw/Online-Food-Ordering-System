@@ -57,9 +57,9 @@ public class FoodOrderingController {
         return foodService.filterByRating(rating);
     }
 
-    @GetMapping("/showAvgRating")
-    public List<Restaurant> showAvgRating() {
-        return foodService.showAvgRating();
+    @GetMapping("/showRestaurantRanking")
+    public List<Restaurant> showRestaurantRanking() {
+        return foodService.showRestaurantRanking();
     }
 
     // Generated new table getRestaurantMenuItems

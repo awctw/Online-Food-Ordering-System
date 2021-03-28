@@ -96,16 +96,16 @@ public interface DataHandler {
 //    List<Restaurant> showAvgRating();
 
     // Aggregation 1
-    @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest, Review r " +
+    @Select("SELECT rest.name FROM Restaurant rest, Review r " +
             "WHERE rest.restaurantId = r.restaurantId " +
-            "GROUP BY rest.Name ORDER BY AVG(r.rating) DESC")
-    List<Restaurant> showAvgRating();
+            "GROUP BY rest.name ORDER BY AVG(r.rating) DESC")
+    List<Restaurant> showRestaurantRanking();
 
 
-    // Aggregation 2 will return nulls other than the name
+    // Aggregation 2
     @Select("SELECT r.name FROM Restaurant r, `Order` o, Customer c " +
-            "WHERE c.customerId = o.customerId AND o.RestaurantId = r.RestaurantId " +
-            "GROUP BY r.Name HAVING COUNT(*) > 1")
+            "WHERE c.customerId = o.customerId AND o.restaurantId = r.restaurantId " +
+            "GROUP BY r.name HAVING COUNT(*) > 1")
     List<Restaurant> getRestaurantOrders();
 
 }

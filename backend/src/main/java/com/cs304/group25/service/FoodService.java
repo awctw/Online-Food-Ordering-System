@@ -90,8 +90,8 @@ public class FoodService {
          dataHandler.deleteOrderDetails(order, id);
     }
 
-    public List<Restaurant> showAvgRating() {
-        return dataHandler.showAvgRating();
+    public List<Restaurant> showRestaurantRanking() {
+        return dataHandler.showRestaurantRanking();
     }
 
     public List<Restaurant> getRestaurantOrders() {
