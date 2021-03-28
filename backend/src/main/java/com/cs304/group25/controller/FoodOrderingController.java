@@ -74,6 +74,9 @@ public class FoodOrderingController {
         return foodService.getRestaurantOrders();
     }
 
+    @GetMapping("/getCheapRestaurant")
+    public List<Restaurant> getCheapRestaurant() { return foodService.getCheapRestaurant(); }
+
     @PostMapping("/insertCustomer")
     public Integer insertCustomer(@RequestBody Customer customer){
         return foodService.insertCustomer(customer);

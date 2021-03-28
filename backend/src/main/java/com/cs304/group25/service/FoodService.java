@@ -98,6 +98,8 @@ public class FoodService {
         return dataHandler.getRestaurantOrders();
     }
 
+    public List<Restaurant> getCheapRestaurant() { return dataHandler.getCheapRestaurant(); }
+
     public Integer insertOrder(TotalOrder totalOrder) {
         logger.info("insert total order" + totalOrder);
         //insert order into Order table

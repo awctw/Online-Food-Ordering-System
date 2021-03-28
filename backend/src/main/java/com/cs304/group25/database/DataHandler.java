@@ -108,4 +108,14 @@ public interface DataHandler {
             "GROUP BY r.name HAVING COUNT(*) > 1")
     List<Restaurant> getRestaurantOrders();
 
+    //Still have error in it
+    @Select("SELECT r.name FROM Restaurant r, Menu m, Food f1 " +
+            "WHERE r.restaurantId = m.restaurantId AND " +
+                  "m.menuId = f1.menuId " +
+            "GROUP BY r.name HAVING AVG(f.price) <= all " +
+                                                        ("SELECT AVG(f2.price) " +
+                                                        "FROM FOOD f2 " +
+                                                        "GROUP BY f2.foodId"))
+    List<Restaurant> getCheapRestaurant();
+
 }
