@@ -7,7 +7,7 @@ public class Restaurant {
     private String name;
     private String category;
     private String address;
-    private String postcode;
+    private String postCode;
     private Integer operatingHours;
 
     public static class RestaurantCol {
@@ -48,13 +48,12 @@ public class Restaurant {
 
     }
 
-
-    public Restaurant(Integer restaurantId, String name, String category, String address, String postcode, Integer operatingHours) {
+    public Restaurant(Integer restaurantId, String name, String category, String address, String postCode, Integer operatingHours) {
         this.restaurantId = restaurantId;
         this.name = name;
         this.category = category;
         this.address = address;
-        this.postcode = postcode;
+        this.postCode = postCode;
         this.operatingHours = operatingHours;
     }
 
@@ -90,12 +89,12 @@ public class Restaurant {
         this.address = address;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public Integer getOperatingHours() {

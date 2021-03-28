@@ -69,9 +69,9 @@ public class FoodOrderingController {
         return foodService.getRestaurantMenuItems(menuType);
     }
 
-    @GetMapping("/getRestaurant")
-    public List<Restaurant> getRestaurant(Restaurant restaurant) {
-        return foodService.getRestaurant(restaurant);
+    @GetMapping("/getRestaurantOrders")
+    public List<Restaurant> getRestaurantOrders() {
+        return foodService.getRestaurantOrders();
     }
 
     @PostMapping("/insertCustomer")
@@ -83,6 +83,11 @@ public class FoodOrderingController {
     @PostMapping("/updateCustomerAddress")
     public Integer updateCustomer(@RequestBody Customer customer, @RequestParam String address){
         return foodService.updateCustomerAddress(customer, address);
+    }
+
+    @PostMapping("/insertRestaurant")
+    public Integer insertRestaurant(@RequestBody Restaurant restaurant){
+        return foodService.insertRestaurant(restaurant);
     }
 
     @PostMapping("/insertPayment")
