@@ -58,8 +58,8 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/showAvgRating")
-    public List<Restaurant> showAvgRating(Integer rating) {
-        return foodService.showAvgRating(rating);
+    public List<Restaurant> showAvgRating() {
+        return foodService.showAvgRating();
     }
 
     // Generated new table getRestaurantMenuItems
@@ -88,6 +88,16 @@ public class FoodOrderingController {
     @PostMapping("/insertRestaurant")
     public Integer insertRestaurant(@RequestBody Restaurant restaurant){
         return foodService.insertRestaurant(restaurant);
+    }
+
+    @PostMapping("/insertReview")
+    public Integer insertReview(@RequestBody Review review){
+        return foodService.insertReview(review);
+    }
+
+    @PostMapping("/insertDeliverer")
+    public Integer insertDeliverer(@RequestBody Deliverer deliverer){
+        return foodService.insertDeliverer(deliverer);
     }
 
     @PostMapping("/insertPayment")

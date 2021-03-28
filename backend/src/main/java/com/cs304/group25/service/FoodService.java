@@ -69,6 +69,10 @@ public class FoodService {
         return dataHandler.insertRestaurant(restaurant);
     }
 
+    public Integer insertReview(Review review) { return dataHandler.insertReview(review); }
+
+    public Integer insertDeliverer(Deliverer deliverer) { return dataHandler.insertDeliverer(deliverer); }
+
     public List<Restaurant.RestaurantCol> filterByCategory(String category) {
         return dataHandler.filterByCategory(category);
     }
@@ -85,8 +89,8 @@ public class FoodService {
          dataHandler.deleteOrderDetails(order, id);
     }
 
-    public List<Restaurant> showAvgRating(int rating) {
-        return dataHandler.showAvgRating(rating);
+    public List<Restaurant> showAvgRating() {
+        return dataHandler.showAvgRating();
     }
 
     public List<Restaurant> getRestaurantOrders() {
