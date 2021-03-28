@@ -15,8 +15,8 @@ public interface DataHandler {
             "VALUES (#{restaurantId},#{customerId},#{notes},#{status},#{totalPrice})"})
     int insertOrder(Order order);
 
-    @Insert({"INSERT INTO Delivery(orderId,eta) " +
-            "VALUES (#{orderId},#{eta})"})
+    @Insert({"INSERT INTO Delivery(orderId,delivererId,eta) " +
+            "VALUES (#{orderId},#{delivererId},#{eta})"})
     int insertDelivery(Delivery delivery);
 
     @Insert({"INSERT INTO PickUp(orderId) " +

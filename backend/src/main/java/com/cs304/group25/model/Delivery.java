@@ -5,10 +5,12 @@ import java.util.Date;
 public class Delivery {
     private Integer orderId;
     private Integer deliveryId;
+    private Integer delivererId;
     private Date eta;
 
-    public Delivery(Integer deliveryId, Date eta) {
-        this.deliveryId = deliveryId;
+    public Delivery(Integer orderId, Integer delivererId, Date eta) {
+        this.orderId = orderId;
+        this.delivererId = delivererId;
         this.eta = eta;
     }
 
@@ -36,11 +38,20 @@ public class Delivery {
         this.eta = eta;
     }
 
+    public Integer getDelivererId() {
+        return delivererId;
+    }
+
+    public void setDelivererId(Integer delivererId) {
+        this.delivererId = delivererId;
+    }
+
     @Override
     public String toString() {
         return "Delivery{" +
                 "orderId=" + orderId +
                 ", deliveryId=" + deliveryId +
+                ", delivererId=" + delivererId +
                 ", eta=" + eta +
                 '}';
     }

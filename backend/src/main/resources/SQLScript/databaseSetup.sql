@@ -155,3 +155,30 @@ VALUES ('13399455','LM213C','7785219923','John');
 INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('33445566','VTS123','7785221193','Sam');
 
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('13579112','T34M4C','7785119923','Max');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('88776655','LM223C','7785219983','Amy');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('36363636','VTS125','7785789235','Bob');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('13131313','LMO38C','7785119865','Cindy');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('13399895','LM214C','7785219927','David');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('33445590','VTS123','7782821193','George');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('33445512','VTS393','7785985493','Jacob');
+
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
+VALUES ('7388 Kingsway', 'Marry', '7782513635','marry@gmail.com','V3N0G9');
+
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
+VALUES ('UBC', 'Mark', '7782513335','mark@gmail.com','V6T1Z4');
+
