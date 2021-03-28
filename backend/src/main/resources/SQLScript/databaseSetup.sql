@@ -2,7 +2,7 @@ CREATE TABLE Customer(
                          customerId INT AUTO_INCREMENT ,
                          address VARCHAR(100) NOT NULL ,
                          name VARCHAR(50)  ,
-                         phoneNumber INT UNIQUE,
+                         phoneNumber CHAR(10) UNIQUE,
                          email VARCHAR(50) UNIQUE ,
                          postCode CHAR(6)  ,
                          PRIMARY KEY (customerId,address)
@@ -14,7 +14,7 @@ CREATE TABLE Restaurant(
                            category VARCHAR(20)  ,
                            address VARCHAR(50)  ,
                            postCode CHAR(6)  ,
-                           operatingHours INT  ,
+                           operatingHours VARCHAR(20)  ,
                            PRIMARY KEY (restaurantId)
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE Deliverer(
                           delivererId INT AUTO_INCREMENT ,
                           licenseNum CHAR(10) ,
                           carPlate CHAR(10) ,
-                          phoneNumber INT ,
+                          phoneNumber CHAR(10) ,
                           name VARCHAR(50)  ,
                           PRIMARY KEY (delivererId,carPlate)
 );
@@ -111,13 +111,13 @@ CREATE TABLE Payment(
 );
 
 INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
-VALUES ('Chipotle','Mexican','818 Howe St','V6Z 1N4','9-10');
+VALUES ('Chipotle','Mexican','818 Howe St','V6Z1N4','9-10');
 
 INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
-VALUES ('Burger King','Fast Food','821 Granville St','V6Z 1K9','9-9:30');
+VALUES ('Burger King','Fast Food','821 Granville St','V6Z1K9','9-9:30');
 
 INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
-VALUES ('Chatime','Bubble Tea','2740 E Hastings St','V5K 1Z9','12-12');
+VALUES ('Chatime','Bubble Tea','2740 E Hastings St','V5K1Z9','12-12');
 
 INSERT INTO Menu(restaurantId, type)
 VALUES (1,'Dinner');
@@ -145,4 +145,13 @@ VALUES (3,9.99,'100% Sirloin beef','Hamburger');
 
 INSERT INTO Food(menuId,price,description,name)
 VALUES (4,5.99,'Cold or Hot','Jasmine Green Milk Tea');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('11223344','LMO34C','7785119923','Oscar');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('13399455','LM213C','7785219923','John');
+
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
+VALUES ('33445566','VTS123','7785221193','Sam');
 

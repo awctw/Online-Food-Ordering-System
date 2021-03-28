@@ -64,4 +64,16 @@ public class Review {
     public void setDelivererId(Integer delivererId) {
         this.delivererId = delivererId;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", customerId=" + customerId +
+                ", restaurantId=" + restaurantId +
+                ", delivererId=" + delivererId +
+                ", comment='" + comment + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }
