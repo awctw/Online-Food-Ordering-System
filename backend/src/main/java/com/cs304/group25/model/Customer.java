@@ -62,7 +62,7 @@ public class Customer {
         return postCode;
     }
 
-    public void setPostCode(String postcode) {
+    public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
 }

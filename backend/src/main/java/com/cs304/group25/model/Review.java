@@ -8,7 +8,7 @@ public class Review {
     private String comment;
     private Integer rating;
 
-    public Review(Integer reviewId, Integer customerId, String comment, Integer rating) {
+    public Review(Integer reviewId, Integer customerId, String comment, Integer rating, Integer restaurantId, Integer delivererId) {
         this.reviewId = reviewId;
         this.customerId = customerId;
         this.comment = comment;
@@ -47,5 +47,21 @@ public class Review {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public Integer getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Integer restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public Integer getDelivererId() {
+        return delivererId;
+    }
+
+    public void setDelivererId(Integer delivererId) {
+        this.delivererId = delivererId;
     }
 }
