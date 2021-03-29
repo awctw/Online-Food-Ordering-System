@@ -131,4 +131,9 @@ public class FoodService {
         }
         return 1;
     }
+
+    public List<RestaurantAllFood> getAllFoodFromARestaurant(Integer restaurantId) {
+        logger.info("getAllFoodFromARestaurant" + restaurantId);
+        return dataHandler.getAllFoodFromARestaurant(restaurantId);
+    }
 }

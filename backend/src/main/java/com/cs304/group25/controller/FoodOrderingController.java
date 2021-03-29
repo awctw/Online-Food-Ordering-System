@@ -114,8 +114,12 @@ public class FoodOrderingController {
 
     @PostMapping("/insertOrder")
     public Integer insertOrder(@RequestBody TotalOrder totalOrder) {
-        System.out.println(totalOrder);
         return foodService.insertOrder(totalOrder);
+    }
+
+    @GetMapping("/getAllFoodFromARestaurant")
+    public List<RestaurantAllFood> getAllFoodFromARestaurant(@RequestParam Integer restaurantId) {
+        return foodService.getAllFoodFromARestaurant(restaurantId);
     }
 
 }

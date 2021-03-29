@@ -118,4 +118,8 @@ public interface DataHandler {
                                                         "GROUP BY f2.foodId"))
     List<Restaurant> getCheapRestaurant();
 
+    @Select("SELECT M.type, F.foodId, price, name, description " +
+            "FROM Food F, Menu M " +
+            "WHERE M.restaurantId = #{restaurantId} and M.menuId = F.menuId")
+    List<RestaurantAllFood> getAllFoodFromARestaurant(Integer restaurantId);
 }
