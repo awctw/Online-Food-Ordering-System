@@ -46,7 +46,7 @@ CREATE TABLE Delivery(
                          delivererId INT NOT NULL ,
                          eta DATETIME  ,
                          PRIMARY KEY (deliveryId) ,
-                         FOREIGN KEY (orderId) REFERENCES `Order` (orderId) ,
+                         FOREIGN KEY (orderId) REFERENCES `Order` (orderId) ON DELETE CASCADE,
                          FOREIGN KEY (delivererId) REFERENCES Deliverer (delivererId)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE PickUp(
                        orderId INT ,
                        pickUpId INT AUTO_INCREMENT ,
                        PRIMARY KEY (pickUpId) ,
-                       FOREIGN KEY (orderId) REFERENCES `Order` (orderId)
+                       FOREIGN KEY (orderId) REFERENCES `Order` (orderId) ON DELETE CASCADE
 );
 
 CREATE TABLE Menu(
