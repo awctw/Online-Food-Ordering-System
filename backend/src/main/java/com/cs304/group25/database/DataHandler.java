@@ -117,7 +117,7 @@ public interface DataHandler {
 //                                                        "FROM Restaurant r, Menu m, Food f2 " +
 //                                                        "GROUP BY r.name"))
 //    List<Restaurant> getCheapRestaurant();
-    @Select("SELECT r1.name, AVG(f1.price) FROM Restaurant r1, Menu m1, Food f1 " +
+    @Select("SELECT r1.name FROM Restaurant r1, Menu m1, Food f1 " +
             "WHERE r1.restaurantId = m1.restaurantId AND " +
                   "m1.menuId = f1.menuId " +
             "GROUP BY r1.name HAVING AVG(f1.price) <= all (SELECT AVG(f2.price) " +
