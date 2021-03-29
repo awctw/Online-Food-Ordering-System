@@ -131,4 +131,13 @@ public interface DataHandler {
             "FROM Food F, Menu M " +
             "WHERE M.restaurantId = #{restaurantId} and M.menuId = F.menuId")
     List<RestaurantAllFood> getAllFoodFromARestaurant(Integer restaurantId);
+
+    @Select("SELECT * " +
+            "FROM `Order` O " +
+            "WHERE O.customerId = #{customerId}")
+    List<Order> getHistoryOrder(Integer customerId);
+
+    @Delete("DELETE FROM `Order` O " +
+            "WHERE O.orderId = #{orderId}")
+    Integer deleteOrder(Integer orderId);
 }

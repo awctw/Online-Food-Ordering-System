@@ -122,5 +122,15 @@ public class FoodOrderingController {
         return foodService.getAllFoodFromARestaurant(restaurantId);
     }
 
+    @GetMapping("/getHistoryOrder")
+    public List<Order> getHistoryOrder(@RequestParam Integer customerId){
+        return foodService.getHistoryOrder(customerId);
+    }
+
+    @GetMapping("/deleteOrder")
+    public Integer deleteOrder(@RequestParam Integer orderId) {
+        return foodService.deleteOrder(orderId);
+    }
+
 }
 

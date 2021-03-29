@@ -108,7 +108,6 @@ export default class Customer extends Component {
     }
 
     updateCustomerAddress = async (record) => {
-        console.log(record);
         const newAddress = record.address;
         const postData = {
             method: 'POST',
@@ -173,7 +172,7 @@ export default class Customer extends Component {
                         <span>
                             <Button type="primary" onClick={() => this.updateCustomerAddress(record)}> update address</Button>
                             <Divider type="vertical" />
-                            <Link to={{ pathname: '/customerShowAllRestaurants', search: params({ ...record }) }}>
+                            <Link to={{ pathname: '/customerDetails', search: params({ ...record }) }}>
                                 <Button type="primary" >Continue as this customer</Button>
                             </Link>
                         </span>

@@ -133,7 +133,17 @@ public class FoodService {
     }
 
     public List<RestaurantAllFood> getAllFoodFromARestaurant(Integer restaurantId) {
-        logger.info("getAllFoodFromARestaurant" + restaurantId);
+        logger.info("getAllFoodFromARestaurant " + restaurantId);
         return dataHandler.getAllFoodFromARestaurant(restaurantId);
+    }
+
+    public List<Order> getHistoryOrder(Integer customerId) {
+        logger.info("getHistoryOrder " + customerId);
+        return dataHandler.getHistoryOrder(customerId);
+    }
+
+    public Integer deleteOrder(Integer orderId) {
+        logger.info("deleteOrder " + orderId);
+        return dataHandler.deleteOrder(orderId);
     }
 }

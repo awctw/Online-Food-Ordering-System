@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Table, Input, InputNumber, Divider, Radio, message, Form} from 'antd';
 import './Customer.css';
-import { Link } from 'react-router-dom';
-import { params, getParams } from '../utils';
+import {  getParams } from '../utils';
 
 export default class customerShowAllFood extends Component {
     state = { 
@@ -116,8 +115,6 @@ export default class customerShowAllFood extends Component {
                 quantity: item.quantity
             })
         })
-        console.log(orderDetailList);
-        console.log(isPickUp);
         const postData = {
             method: 'POST',
             headers: {
@@ -252,7 +249,7 @@ export default class customerShowAllFood extends Component {
                         wrapperCol={{ offset: 4, span: 8 }}
                         >
                             <Button type="primary" htmlType="submit">
-                            Submit the order!
+                            Place the order!
                             </Button>
                         </Form.Item>
                     </Form>
