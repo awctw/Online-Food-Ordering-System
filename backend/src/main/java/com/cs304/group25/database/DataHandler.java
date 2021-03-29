@@ -109,13 +109,22 @@ public interface DataHandler {
     List<Restaurant> getRestaurantOrders();
 
     //Still have error in it
-    @Select("SELECT r.name FROM Restaurant r, Menu m, Food f1 " +
-            "WHERE r.restaurantId = m.restaurantId AND " +
-                  "m.menuId = f1.menuId " +
-            "GROUP BY r.name HAVING AVG(f.price) <= all " +
-                                                        ("SELECT AVG(f2.price) " +
-                                                        "FROM FOOD f2 " +
-                                                        "GROUP BY f2.foodId"))
+//    @Select("SELECT r.name, AVG(f1.price) FROM Restaurant r, Menu m, Food f1 " +
+//            "WHERE r.restaurantId = m.restaurantId AND " +
+//                  "m.menuId = f1.menuId " +
+//            "GROUP BY r.name HAVING AVG(f1.price) <= all " +
+//                                                        ("SELECT AVG(f2.price) " +
+//                                                        "FROM Restaurant r, Menu m, Food f2 " +
+//                                                        "GROUP BY r.name"))
+//    List<Restaurant> getCheapRestaurant();
+    @Select("SELECT r1.name, AVG(f1.price) FROM Restaurant r1, Menu m1, Food f1 " +
+            "WHERE r1.restaurantId = m1.restaurantId AND " +
+                  "m1.menuId = f1.menuId " +
+            "GROUP BY r1.name HAVING AVG(f1.price) <= all (SELECT AVG(f2.price) " +
+                                                          "FROM Restaurant r2, Menu m2, Food f2 " +
+                                                          "WHERE r2.restaurantId = m2.restaurantId AND " +
+                                                                "m2.menuId = f2.menuId " +
+                                                          "GROUP BY r2.name)")
     List<Restaurant> getCheapRestaurant();
 
     @Select("SELECT M.type, F.foodId, price, name, description " +
