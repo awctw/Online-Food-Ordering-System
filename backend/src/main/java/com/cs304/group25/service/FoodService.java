@@ -82,8 +82,8 @@ public class FoodService {
         return dataHandler.filterByRating(rating);
     }
 
-    public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType) {
-        return dataHandler.getRestaurantMenuItems(menuType);
+    public List<RestaurantMenuItems> getRestaurantMenuItems(String menuType, int restaurantId) {
+        return dataHandler.getRestaurantMenuItems(menuType, restaurantId);
     }
 
     public void deleteOrderDetails(Order order, Integer id){

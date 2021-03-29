@@ -72,14 +72,17 @@ public interface DataHandler {
     @Update("Update Customer SET address = #{newAddress} WHERE customerId = #{customer.customerId}" )
     int updateCustomerAddress(Customer customer, String newAddress);
 
-    @Select("SELECT R.restaurantId, R.name, R.operatingHours FROM Restaurant R WHERE #{cat} = R.category")
+    @Select("SELECT R.name, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
 
     @Select("SELECT * FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId WHERE rating >= #{rating}")
     List<Restaurant> filterByRating(int rating);
 
-    @Select("SELECT R.restaurantId, R.name, Food.foodName, Food.price, Food.description FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId INNER JOIN Food ON Food.menuId = Menu.menuId WHERE Menu.type = #{menuType}")
-    List<RestaurantMenuItems> getRestaurantMenuItems(String menuType);
+    @Select("SELECT R.restaurantId, R.name, Food.foodName, Food.price, Food.description " +
+            "FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId " +
+            "INNER JOIN Food ON Food.menuId = Menu.menuId " +
+            "WHERE Menu.type = #{menuType} AND R.restaurantId = #{restaurantId}")
+    List<RestaurantMenuItems> getRestaurantMenuItems(String menuType, int restaurantId);
 
     @Delete("DELETE FROM OrderDetail WHERE OrderDetail.orderDetailId = #{id} AND #{order.orderId} = OrderDetail.orderId")
     void deleteOrderDetails(Order order, Integer id);

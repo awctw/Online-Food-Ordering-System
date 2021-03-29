@@ -64,9 +64,9 @@ public class FoodOrderingController {
 
     // Generated new table getRestaurantMenuItems
     @GetMapping("/getRestaurantMenuItems")
-    public List<RestaurantMenuItems> getRestaurantMenuItems(@RequestParam String menuType) {
+    public List<RestaurantMenuItems> getRestaurantMenuItems(@RequestParam String menuType, @RequestParam int restaurantId) {
         //menuType = "Lunch";
-        return foodService.getRestaurantMenuItems(menuType);
+        return foodService.getRestaurantMenuItems(menuType, restaurantId);
     }
 
     @GetMapping("/getRestaurantOrders")

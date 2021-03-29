@@ -11,16 +11,24 @@ public class Restaurant {
     private String operatingHours;
 
     public static class RestaurantCol {
-        private Integer restaurantId;
         private String name;
-        private Integer operatingHours;
+        private String address;
+        private String category;
 
-        public Integer getRestaurantId() {
-            return restaurantId;
+        public String getAddress() {
+            return address;
         }
 
-        public void setRestaurantId(Integer restaurantId) {
-            this.restaurantId = restaurantId;
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
         }
 
         public String getName() {
@@ -31,18 +39,11 @@ public class Restaurant {
             this.name = name;
         }
 
-        public Integer getOperatingHours() {
-            return operatingHours;
-        }
 
-        public void setOperatingHours(Integer operatingHours) {
-            this.operatingHours = operatingHours;
-        }
-
-        public RestaurantCol(Integer restaurantId, String name, Integer operatingHours) {
-            this.restaurantId = restaurantId;
+        public RestaurantCol(String name, String address, String category) {
+            this.address = address;
             this.name = name;
-            this.operatingHours = operatingHours;
+            this.category = category;
         }
 
 
