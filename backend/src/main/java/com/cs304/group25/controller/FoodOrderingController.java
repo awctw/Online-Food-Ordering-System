@@ -15,17 +15,17 @@ public class FoodOrderingController {
     @Autowired
     private FoodService foodService;
 
-    @GetMapping("/getAllRestaurant")
+    @GetMapping("/getAllRestaurants")
     public List<Restaurant> getAllRestaurant (){
         return foodService.getAllRestaurant();
     }
 
-    @GetMapping("/getAllCustomer")
+    @GetMapping("/getAllCustomers")
     public List<Customer> getAllCustomer (){
         return foodService.getAllCustomer();
     }
 
-    @GetMapping("/getAllDeliverer")
+    @GetMapping("/getAllDeliverers")
     public List<Deliverer> getAllDeliverer (){
         return foodService.getAllDeliverer();
     }
@@ -82,7 +82,6 @@ public class FoodOrderingController {
         return foodService.insertCustomer(customer);
     }
 
-    // Should change into PutMapping?
     @PostMapping("/updateCustomerAddress")
     public Integer updateCustomer(@RequestBody Customer customer, @RequestParam String address){
         return foodService.updateCustomerAddress(customer, address);

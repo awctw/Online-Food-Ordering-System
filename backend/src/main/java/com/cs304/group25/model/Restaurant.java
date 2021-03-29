@@ -104,6 +104,18 @@ public class Restaurant {
     public void setOperatingHours(String operatingHours) {
         this.operatingHours = operatingHours;
     }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "restaurantId=" + restaurantId +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", address='" + address + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", operatingHours='" + operatingHours + '\'' +
+                '}';
+    }
 }
 
 

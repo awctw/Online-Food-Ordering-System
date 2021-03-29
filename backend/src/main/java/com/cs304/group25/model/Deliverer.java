@@ -54,4 +54,15 @@ public class Deliverer {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Deliverer{" +
+                "delivererId=" + delivererId +
+                ", licenseNum='" + licenseNum + '\'' +
+                ", carPlate='" + carPlate + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
