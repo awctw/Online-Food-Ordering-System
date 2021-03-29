@@ -6,7 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import enUS from 'antd/lib/locale-provider/en_US';
 
 import './App.css';
-import { Customer, customerShowAllRestaurants } from './Customer';
+import { Customer, customerShowAllRestaurants, customerShowAllFood } from './Customer';
 
 const { Header, Content, Sider } = Layout;
 
@@ -42,6 +42,7 @@ export default class App extends Component {
                             <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                                 <Route path="/customer" component={Customer} />
                                 <Route path="/customerShowAllRestaurants" component={customerShowAllRestaurants} />
+                                <Route path="/customerShowAllFood" component={customerShowAllFood} />
                                 {/* <Route path="/dashboard" component={Dashboard} />
                                 <Route path="/tests/:type" component={TopLevelBuilds} />
                                 <Route path="/output/:outputType" component={Output} />

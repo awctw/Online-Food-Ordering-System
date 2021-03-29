@@ -73,10 +73,10 @@ export default class customerShowAllRestaurants extends Component {
                 width: '30%',
                 render: (text, record) => {
                     console.log(record);
-                    const { restaurantId } = record;
+                    const { restaurantId, name } = record;
                     return (
                         <span>
-                            <Link to={{ pathname: '/customerShowAllFood', search: params({ customerId, restaurantId }) }}>
+                            <Link to={{ pathname: '/customerShowAllFood', search: params({ customerId, restaurantId, name }) }}>
                                 <Button type="primary" >Select</Button>
                             </Link>
                         </span>
