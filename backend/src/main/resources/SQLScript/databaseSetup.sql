@@ -1,7 +1,7 @@
 CREATE TABLE Customer(
                          customerId INT AUTO_INCREMENT ,
                          address VARCHAR(100) NOT NULL ,
-                         cName VARCHAR(50)  ,
+                         name VARCHAR(50)  ,
                          phoneNumber CHAR(10) UNIQUE,
                          email VARCHAR(50) UNIQUE ,
                          postCode CHAR(6)  ,
@@ -10,7 +10,7 @@ CREATE TABLE Customer(
 
 CREATE TABLE Restaurant(
                            restaurantId INT AUTO_INCREMENT ,
-                           rName VARCHAR(50)  ,
+                           name VARCHAR(50)  ,
                            category VARCHAR(20)  ,
                            address VARCHAR(50)  ,
                            postCode CHAR(6)  ,
@@ -23,7 +23,7 @@ CREATE TABLE Deliverer(
                           licenseNum CHAR(10) ,
                           carPlate CHAR(10) ,
                           phoneNumber CHAR(10) ,
-                          dName VARCHAR(50)  ,
+                          name VARCHAR(50)  ,
                           PRIMARY KEY (delivererId,carPlate)
 );
 
@@ -110,19 +110,19 @@ CREATE TABLE Payment(
                         FOREIGN KEY (customerId) REFERENCES Customer (customerId) ON DELETE CASCADE
 );
 
-INSERT INTO Restaurant(rName,category,address,postCode,operatingHours)
+INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
 VALUES ('Chipotle','Mexican','818 Howe St','V6Z1N4','9-10');
 
-INSERT INTO Restaurant(rName,category,address,postCode,operatingHours)
+INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
 VALUES ('Burger King','Fast Food','821 Granville St','V6Z1K9','9-9:30');
 
-INSERT INTO Restaurant(rName,category,address,postCode,operatingHours)
+INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
 VALUES ('Chatime','Bubble Tea','2740 E Hastings St','V5K1Z9','12-12');
 
-INSERT INTO Restaurant(rName,category,address,postCode,operatingHours)
+INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
 VALUES ('Hydra','Mediterranean','825 W. Pender St','V6C1K7','8-9');
 
-INSERT INTO Restaurant(rName,category,address,postCode,operatingHours)
+INSERT INTO Restaurant(name,category,address,postCode,operatingHours)
 VALUES ('Tacofino','Mexican','15 W Cordova St','V6B1C8','11:30-9');
 
 INSERT INTO Menu(restaurantId, type)
@@ -264,40 +264,40 @@ VALUES (8,0.50,'Mild tomatillo & cilantro salsa','House Made Salsa Verde');
 INSERT INTO Food(menuId,price,description,name)
 VALUES (8,7.00,'Strawberry mojito','Kombucha');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('11223344','LMO34C','7785119923','Oscar');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('13399455','LM213C','7785219923','John');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('33445566','VTS123','7785221193','Sam');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('13579112','T34M4C','7785119923','Max');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('88776655','LM223C','7785219983','Amy');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('36363636','VTS125','7785789235','Bob');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('13131313','LMO38C','7785119865','Cindy');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('13399895','LM214C','7785219927','David');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('33445590','VTS123','7782821193','George');
 
-INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, dName)
+INSERT INTO Deliverer(licenseNum, carPlate, phoneNumber, name)
 VALUES ('33445512','VTS393','7785985493','Jacob');
 
-INSERT INTO Customer(address, cName, phoneNumber, email, postCode)
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
 VALUES ('7388 Kingsway', 'Marry', '7782513635','marry@gmail.com','V3N0G9');
 
-INSERT INTO Customer(address, cName, phoneNumber, email, postCode)
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
 VALUES ('UBC', 'Mark', '7782513335','mark@gmail.com','V6T1Z4');
 
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
