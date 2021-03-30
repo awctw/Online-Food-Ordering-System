@@ -31,7 +31,7 @@ public class FoodService {
         return dataHandler.getAllDeliverers();
     }
 
-    public List<Review> getAllReviews() {
+    public List<ReviewDetails> getAllReviews() {
         return dataHandler.getAllReviews();
     }
 

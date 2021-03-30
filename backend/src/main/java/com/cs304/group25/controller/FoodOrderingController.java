@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -31,7 +30,7 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getAllReviews")
-    public List<Review> getAllReview (){
+    public List<ReviewDetails> getAllReview (){
         return foodService.getAllReviews();
     }
 

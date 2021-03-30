@@ -7,8 +7,8 @@ import java.util.List;
 @Mapper
 public interface DataHandler {
 
-    @Insert({"INSERT INTO Customer(address,name,phoneNumber,email,postCode) " +
-            "VALUES (#{address},#{name},#{phoneNumber},#{email},#{postCode})"})
+    @Insert({"INSERT INTO Customer(address,cName,phoneNumber,email,postCode) " +
+            "VALUES (#{address},#{cName},#{phoneNumber},#{email},#{postCode})"})
     int insertCustomer(Customer customer);
 
     @Insert({"INSERT INTO `Order`(restaurantId,customerId,notes,status,totalPrice) " +
@@ -23,12 +23,12 @@ public interface DataHandler {
             "VALUES (#{orderId})"})
     int insertPickUp(PickUp pickUp);
 
-    @Insert({"INSERT INTO Deliverer(licenseNum,carPlate,phoneNumber,name) " +
-            "VALUES (#{licenseNum},#{carPlate},#{phoneNumber},#{name})"})
+    @Insert({"INSERT INTO Deliverer(licenseNum,carPlate,phoneNumber,dName) " +
+            "VALUES (#{licenseNum},#{carPlate},#{phoneNumber},#{dName})"})
     int insertDeliverer(Deliverer deliverer);
 
-    @Insert({"INSERT INTO Restaurant(name,category,address,postCode,operatingHours) " +
-            "VALUES (#{name},#{category},#{address},#{postCode},#{operatingHours})"})
+    @Insert({"INSERT INTO Restaurant(rName,category,address,postCode,operatingHours) " +
+            "VALUES (#{rName},#{category},#{address},#{postCode},#{operatingHours})"})
     int insertRestaurant(Restaurant restaurant);
 
     @Insert({"INSERT INTO Menu(restaurantId, type)" +
@@ -63,8 +63,12 @@ public interface DataHandler {
     @Select("SELECT * FROM Payment")
     List<Payment> getAllPayments();
 
-    @Select("SELECT * FROM Review")
-    List<Review> getAllReviews();
+    @Select("SELECT r.reviewId, cName, rName, dName, r.comment, r.rating " +
+            "FROM Review r " +
+            "INNER JOIN Customer ON Customer.customerId = r.customerId " +
+            "INNER JOIN Restaurant ON Restaurant.restaurantId = r.restaurantId " +
+            "INNER JOIN Deliverer ON Deliverer.delivererId = r.delivererId")
+    List<ReviewDetails> getAllReviews();
 
     @Select("SELECT * FROM Review WHERE #{id} = Review.restaurantId")
     List<Review> getMatchingRestaurantReviews(Integer id);
@@ -72,13 +76,13 @@ public interface DataHandler {
     @Update("Update Customer SET address = #{newAddress} WHERE customerId = #{customer.customerId}" )
     int updateCustomerAddress(Customer customer, String newAddress);
 
-    @Select("SELECT R.name, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
+    @Select("SELECT R.rName, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
 
     @Select("SELECT * FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId WHERE rating >= #{rating}")
     List<Restaurant> filterByRating(int rating);
 
-    @Select("SELECT R.restaurantId, R.name, Food.foodName, Food.price, Food.description " +
+    @Select("SELECT R.restaurantId, R.rName, Food.name, Food.price, Food.description " +
             "FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId " +
             "INNER JOIN Food ON Food.menuId = Menu.menuId " +
             "WHERE Menu.type = #{menuType} AND R.restaurantId = #{restaurantId}")
@@ -99,16 +103,16 @@ public interface DataHandler {
 //    List<Restaurant> showAvgRating();
 
     // Aggregation 1
-    @Select("SELECT rest.name FROM Restaurant rest, Review r " +
+    @Select("SELECT rest.rName FROM Restaurant rest, Review r " +
             "WHERE rest.restaurantId = r.restaurantId " +
-            "GROUP BY rest.name ORDER BY AVG(r.rating) DESC")
+            "GROUP BY rest.rName ORDER BY AVG(r.rating) DESC")
     List<Restaurant> showRestaurantRanking();
 
 
     // Aggregation 2
-    @Select("SELECT r.name FROM Restaurant r, `Order` o, Customer c " +
+    @Select("SELECT r.rName FROM Restaurant r, `Order` o, Customer c " +
             "WHERE o.customerId = #{customerId} AND o.restaurantId = r.restaurantId AND c.customerID = #{customerId} " +
-            "GROUP BY r.name HAVING COUNT(*) >= 1")
+            "GROUP BY r.rName HAVING COUNT(*) >= 1")
     List<Restaurant> getRestaurantOrders(int customerId);
 
     //Still have error in it
@@ -120,14 +124,14 @@ public interface DataHandler {
 //                                                        "FROM Restaurant r, Menu m, Food f2 " +
 //                                                        "GROUP BY r.name"))
 //    List<Restaurant> getCheapRestaurant();
-    @Select("SELECT r1.name FROM Restaurant r1, Menu m1, Food f1 " +
+    @Select("SELECT r1.rName FROM Restaurant r1, Menu m1, Food f1 " +
             "WHERE r1.restaurantId = m1.restaurantId AND " +
                   "m1.menuId = f1.menuId " +
-            "GROUP BY r1.name HAVING AVG(f1.price) <= all (SELECT AVG(f2.price) " +
+            "GROUP BY r1.rName HAVING AVG(f1.price) <= all (SELECT AVG(f2.price) " +
                                                           "FROM Restaurant r2, Menu m2, Food f2 " +
                                                           "WHERE r2.restaurantId = m2.restaurantId AND " +
                                                                 "m2.menuId = f2.menuId " +
-                                                          "GROUP BY r2.name)")
+                                                          "GROUP BY r2.rName)")
     List<Restaurant> getCheapRestaurant();
 
     @Select("SELECT M.type, F.foodId, price, name, description " +
