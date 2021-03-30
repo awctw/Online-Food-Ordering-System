@@ -107,9 +107,9 @@ public interface DataHandler {
 
     // Aggregation 2
     @Select("SELECT r.name FROM Restaurant r, `Order` o, Customer c " +
-            "WHERE c.customerId = o.customerId AND o.restaurantId = r.restaurantId " +
-            "GROUP BY r.name HAVING COUNT(*) > 1")
-    List<Restaurant> getRestaurantOrders();
+            "WHERE o.customerId = #{customerId} AND o.restaurantId = r.restaurantId AND c.customerID = #{customerId} " +
+            "GROUP BY r.name HAVING COUNT(*) >= 1")
+    List<Restaurant> getRestaurantOrders(int customerId);
 
     //Still have error in it
 //    @Select("SELECT r.name, AVG(f1.price) FROM Restaurant r, Menu m, Food f1 " +

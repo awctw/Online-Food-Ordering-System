@@ -94,8 +94,8 @@ public class FoodService {
         return dataHandler.showRestaurantRanking();
     }
 
-    public List<Restaurant> getRestaurantOrders() {
-        return dataHandler.getRestaurantOrders();
+    public List<Restaurant> getRestaurantOrders(int customerId) {
+        return dataHandler.getRestaurantOrders(customerId);
     }
 
     public List<Restaurant> getCheapRestaurant() { return dataHandler.getCheapRestaurant(); }

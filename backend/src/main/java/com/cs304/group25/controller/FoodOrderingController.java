@@ -70,8 +70,8 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getRestaurantOrders")
-    public List<Restaurant> getRestaurantOrders() {
-        return foodService.getRestaurantOrders();
+    public List<Restaurant> getRestaurantOrders(int customerId) {
+        return foodService.getRestaurantOrders(customerId);
     }
 
     @GetMapping("/getCheapRestaurant")
