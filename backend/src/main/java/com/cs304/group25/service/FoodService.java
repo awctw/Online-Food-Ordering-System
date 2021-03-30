@@ -99,15 +99,17 @@ public class FoodService {
          dataHandler.deleteOrderDetails(order, id);
     }
 
-    public List<Restaurant> showRestaurantRanking() {
+    public List<String> showRestaurantRanking() {
         return dataHandler.showRestaurantRanking();
     }
 
-    public List<Restaurant> getRestaurantOrders(int customerId) {
+    public List<String> getRestaurantOrders(int customerId) {
         return dataHandler.getRestaurantOrders(customerId);
     }
 
-    public List<Restaurant> getCheapRestaurant() { return dataHandler.getCheapRestaurant(); }
+    public List<String> getCheapRestaurant() { return dataHandler.getCheapRestaurant(); }
+
+    public List<Customer> getVipCustomer() { return dataHandler.getVipCustomer(); }
 
     public Integer insertOrder(TotalOrder totalOrder) {
         logger.info("insert total order" + totalOrder);
