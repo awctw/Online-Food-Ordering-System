@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.Date;
@@ -137,9 +139,20 @@ public class FoodService {
         return dataHandler.getAllFoodFromARestaurant(restaurantId);
     }
 
-    public List<Order> getHistoryOrder(Integer customerId) {
+    public List<OrderHistory> getHistoryOrder(Integer customerId) {
         logger.info("getHistoryOrder " + customerId);
-        return dataHandler.getHistoryOrder(customerId);
+        List<OrderHistory> historyDeliveryOrder = dataHandler.getHistoryDeliveryOrder(customerId);
+        List<OrderHistory> historyPickUpOrder = dataHandler.getHistoryPickUpOrder(customerId);
+        for(OrderHistory o : historyDeliveryOrder) {
+            o.setType("Delivery");
+        }
+        for(OrderHistory o : historyPickUpOrder) {
+            o.setType("PickUp");
+            o.setDelivererName("/");
+        }
+        List<OrderHistory> newlist = new ArrayList<OrderHistory>(historyDeliveryOrder);
+        newlist.addAll(historyPickUpOrder);
+        return newlist;
     }
 
     public Integer deleteOrder(Integer orderId) {

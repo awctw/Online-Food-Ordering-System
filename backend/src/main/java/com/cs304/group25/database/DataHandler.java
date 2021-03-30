@@ -65,7 +65,8 @@ public interface DataHandler {
 
     @Select("SELECT R1.reviewId, C.name customerName, R2.name restaurantName, D.name delivererName, R1.comment, R1.rating " +
             "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
-            "WHERE R1.customerId = C.customerId and R1.restaurantId = R2.restaurantId and R1.delivererId = D.delivererId")
+            "WHERE R1.customerId = C.customerId and R1.restaurantId = R2.restaurantId and R1.delivererId = D.delivererId " +
+            "ORDER BY R1.reviewId ASC")
     List<ReviewDetails> getAllReviews();
 
     @Select("SELECT * FROM Review WHERE #{id} = Review.restaurantId")
@@ -137,10 +138,18 @@ public interface DataHandler {
             "WHERE M.restaurantId = #{restaurantId} and M.menuId = F.menuId")
     List<RestaurantAllFood> getAllFoodFromARestaurant(Integer restaurantId);
 
-    @Select("SELECT * " +
-            "FROM `Order` O " +
-            "WHERE O.customerId = #{customerId}")
-    List<Order> getHistoryOrder(Integer customerId);
+    @Select("SELECT O.orderId orderId, O.restaurantId restaurantId, O.customerId, O.notes, " +
+            "O.status, O.totalPrice, R.name restaurantName, D1.delivererId, D2.name delivererName " +
+            "FROM `Order` O, Restaurant R, Delivery D1, Deliverer D2 " +
+            "WHERE O.customerId = #{customerId} and O.restaurantId = R.restaurantId and O.orderId = D1.orderId and D2.delivererId = D1.delivererId ")
+    List<OrderHistory> getHistoryDeliveryOrder(Integer customerId);
+
+    @Select("SELECT O.orderId orderId, O.restaurantId restaurantId, O.customerId, O.notes, " +
+            "O.status, O.totalPrice, R.name restaurantName " +
+            "FROM `Order` O, Restaurant R, PickUp P " +
+            "WHERE O.customerId = #{customerId} and O.restaurantId = R.restaurantId and O.orderId = P.orderId")
+    List<OrderHistory> getHistoryPickUpOrder(Integer customerId);
+
 
     @Delete("DELETE FROM `Order` O " +
             "WHERE O.orderId = #{orderId}")

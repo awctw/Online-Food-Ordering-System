@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table, message, Form, Input } from 'antd';
+import { Button, Table, message, Form, Input, Divider } from 'antd';
 import './Customer.css';
 import { Link } from 'react-router-dom';
 import { params, getParams } from '../utils';
@@ -84,7 +84,12 @@ export default class customerDetails extends Component {
             },
             {
                 title: 'Restaurant',
-                dataIndex: 'restaurantId',
+                dataIndex: 'restaurantName',
+                width: '10%'
+            },
+            {
+                title: 'Deliverer',
+                dataIndex: 'delivererName',
                 width: '10%'
             },
             {
@@ -98,6 +103,11 @@ export default class customerDetails extends Component {
                 width: '10%'
             },
             {
+                title: 'Type',
+                dataIndex: 'type',
+                width: '10%'
+            },
+            {
                 title: 'Total Price',
                 dataIndex: 'totalPrice',
                 width: '10%'
@@ -107,10 +117,16 @@ export default class customerDetails extends Component {
                 dataIndex: 'action',
                 width: '30%',
                 render: (text, record) => {
+                    const { restaurantId, delivererId, customerId } = record;
                     return (
-                        <div>
+                        <span>
                             <Button type="primary" onClick={() => this.deleteOrder(record)}> Delete</Button>
-                        </div>    
+                            <Divider type="vertical" />
+                            <Link to={{ pathname: '/customerGiveReview', search: params({ customerId, restaurantId, delivererId }) }}>
+                                <Button type="primary" >Give a review</Button>
+                            </Link>
+                        </span>   
+                        
                     )
                 }
             }

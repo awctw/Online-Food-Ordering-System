@@ -123,7 +123,7 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getHistoryOrder")
-    public List<Order> getHistoryOrder(@RequestParam Integer customerId){
+    public List<OrderHistory> getHistoryOrder(@RequestParam Integer customerId){
         return foodService.getHistoryOrder(customerId);
     }
 
