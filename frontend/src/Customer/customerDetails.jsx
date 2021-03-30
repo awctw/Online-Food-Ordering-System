@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table, message } from 'antd';
+import { Button, Table, message, Form, Input } from 'antd';
 import './Customer.css';
 import { Link } from 'react-router-dom';
 import { params, getParams } from '../utils';
@@ -7,6 +7,8 @@ import { params, getParams } from '../utils';
 export default class customerDetails extends Component {
     state = { 
         data: [],
+        orderHistoryData:[],
+        filterByCategoryData: [],
         customerId: null,
         customerInfo: null,
      };
@@ -56,8 +58,24 @@ export default class customerDetails extends Component {
         this.componentDidMount();
     }
 
+    handleFilterCategory = async (record) => {
+        const category = record.category;
+        const filterByCategoryResponse = await fetch( `/filterByCategory?category=${category}`, {
+            method: 'get'
+        } );
+        const filterByCategoryResults = await filterByCategoryResponse.json();
+
+        const filterByCategoryData = filterByCategoryResults.map(( info, i ) => {
+            return {
+                key: i,
+                ...info
+            };
+        } )
+        this.setState( { filterByCategoryData } );
+    }
+
     render() {
-        const { data, orderHistoryData, customerId, customerInfo } = this.state;
+        const { data, orderHistoryData, filterByCategoryData, customerId, customerInfo } = this.state;
         const orderHistoryColumns = [
             {
                 title: 'Order Id',
@@ -90,9 +108,29 @@ export default class customerDetails extends Component {
                 width: '30%',
                 render: (text, record) => {
                     return (
-                        <Button type="primary" onClick={() => this.deleteOrder(record)}> Delete</Button>
+                        <div>
+                            <Button type="primary" onClick={() => this.deleteOrder(record)}> Delete</Button>
+                        </div>    
                     )
                 }
+            }
+        ];
+
+        const filterByCategoryColumns = [
+            {
+                title: 'Name',
+                dataIndex: 'name',
+                width: '10%'
+            },
+            {
+                title: 'Address',
+                dataIndex: 'address',
+                width: '10%'
+            },
+            {
+                title: 'Category',
+                dataIndex: 'category',
+                width: '10%'
             }
         ];
 
@@ -147,6 +185,36 @@ export default class customerDetails extends Component {
                     dataSource={data}
                     columns={columns}
                     title={() => <b>All Restaurants</b>}
+                    pagination={false}
+                />
+                <br />
+                <br />
+                <Form
+                        labelCol= {{ span: 2 }}
+                        wrapperCol={{ span: 8 }}
+                        initialValues={{ remember: true }}
+                        onFinish={this.handleFilterCategory}
+                        >
+                        <Form.Item
+                            label="Filter by category"
+                            name="category"
+                        >
+                            <Input />
+                        </Form.Item>
+
+                        <Form.Item 
+                        wrapperCol={{ offset: 4, span: 8 }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                             Place filter
+                            </Button>
+                        </Form.Item>
+                </Form>
+                <Table
+                    bordered
+                    dataSource={filterByCategoryData}
+                    columns={filterByCategoryColumns}
+                    title={() => <b>Filtered Restaurants</b>}
                     pagination={false}
                 />
                 <br />
