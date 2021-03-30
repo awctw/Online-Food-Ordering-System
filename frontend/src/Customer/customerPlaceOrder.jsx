@@ -104,6 +104,32 @@ export default class customerShowAllFood extends Component {
         })
     }
 
+    handleFilterMenu = async (record) => {
+        const {restaurantId} = this.state;
+        const menuType = record.menuType;
+        if (!menuType) {
+            this.componentDidMount();
+        } else {
+            const response = await fetch( `/getRestaurantMenuItems?menuType=${menuType}&restaurantId=${restaurantId}`, {
+                method: 'get'
+            } );
+            const results = await response.json();
+            let foodIdArray = [];
+            results.map(result => {
+                foodIdArray.push(result.foodtId);
+            })
+            const {data} = this.state;
+            let filterData = [];
+            data.map(d => {
+                if (foodIdArray.includes(d.foodId)) filterData.push(d);
+            })
+            this.setState({
+                data: filterData
+            })
+        }
+        
+    }
+
     handleSubmit = async (notes) => {
         const {cart, restaurantId, customerId, isPickUp, totalPrice} = this.state;
         let orderDetailList = [];
@@ -214,6 +240,27 @@ export default class customerShowAllFood extends Component {
                         title={() => <b>Restaurant: {name}</b>}
                         pagination={false}
                     />
+                    <br />
+                    <Form
+                        labelCol= {{ span: 2 }}
+                        wrapperCol={{ span: 8 }}
+                        initialValues={{ remember: true }}
+                        onFinish={this.handleFilterMenu}
+                        >
+                        <Form.Item
+                            label="Filter by Menu"
+                            name="menuType"
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item 
+                        wrapperCol={{ offset: 4, span: 8 }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                            Filter by Menu
+                            </Button>
+                        </Form.Item>
+                    </Form>
                     <Divider type="horizontal" />
                     <h2>Your cart, totalPrice: {totalPrice}</h2>
                     <Table

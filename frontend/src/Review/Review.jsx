@@ -29,16 +29,6 @@ export default class Review extends Component {
             this.setState( { data } );
         }
     }
-    onCellChange = ( key, dataIndex ) => {
-        return ( value ) => {
-            const { data } = this.state;
-            const target = data.find( item => item.key === key );
-            if ( target ) {
-                target[dataIndex] = value;
-                this.setState( { data } );
-            }
-        };
-    }
 
     handleFilterByRating = async (record) => {
         const rating = record.rating;

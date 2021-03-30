@@ -4,15 +4,15 @@ public class RestaurantMenuItems {
     private Double price;
     private String description;
     private String foodName;
-    private Integer restaurantId;
+    private Integer foodtId;
     private String name;
 
 
-    public RestaurantMenuItems(Integer restaurantId, String name, String foodName, Double price, String description) {
+    public RestaurantMenuItems(Integer foodId, String name, String foodName, Double price, String description) {
         this.price = price;
         this.description = description;
         this.foodName = foodName;
-        this.restaurantId = restaurantId;
+        this.foodtId = foodId;
         this.name = name;
     }
 
@@ -41,12 +41,12 @@ public class RestaurantMenuItems {
         this.foodName = foodName;
     }
 
-    public Integer getRestaurantId() {
-        return restaurantId;
+    public Integer getFoodtId() {
+        return foodtId;
     }
 
-    public void setRestaurantId(Integer restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setFoodtId(Integer foodtId) {
+        this.foodtId = foodtId;
     }
 
     public String getName() {
@@ -63,7 +63,6 @@ public class RestaurantMenuItems {
                 "price=" + price +
                 ", description='" + description + '\'' +
                 ", foodName='" + foodName + '\'' +
-                ", restaurantId=" + restaurantId +
                 ", name='" + name + '\'' +
                 '}';
     }

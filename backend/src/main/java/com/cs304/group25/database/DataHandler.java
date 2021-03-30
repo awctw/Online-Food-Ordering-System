@@ -80,7 +80,7 @@ public interface DataHandler {
     @Select("SELECT * FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId WHERE rating >= #{rating}")
     List<Restaurant> filterByRating(int rating);
 
-    @Select("SELECT R.restaurantId, R.name, Food.foodName, Food.price, Food.description " +
+    @Select("SELECT Food.foodId, R.name name, Food.name foodName, Food.price, Food.description " +
             "FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId " +
             "INNER JOIN Food ON Food.menuId = Menu.menuId " +
             "WHERE Menu.type = #{menuType} AND R.restaurantId = #{restaurantId}")
