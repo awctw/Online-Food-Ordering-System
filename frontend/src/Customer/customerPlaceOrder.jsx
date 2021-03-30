@@ -75,6 +75,7 @@ export default class customerShowAllFood extends Component {
         cart.map(item =>{
             totalPrice += item.price;
         })
+        totalPrice = totalPrice.toFixed(2);
         this.setState({
             totalPrice
         })
@@ -92,15 +93,12 @@ export default class customerShowAllFood extends Component {
     }
 
     handleNotes = (obj, e) =>{
-        console.log(obj)
-        console.log(e);
         this.setState({
             notes: obj.target.value
         })
     }
 
     handleDeliveryOrPickup = obj => {
-        console.log(obj.target);
         this.setState({
             isPickUp: obj.target.value
         })

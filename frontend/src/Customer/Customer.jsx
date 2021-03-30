@@ -86,6 +86,10 @@ export default class Customer extends Component {
     }
 
     insertNewCustomer = async (newCustomer) => {
+        if (newCustomer.phoneNumber.length > 10) {
+            message.error( 'phone number too long!' );
+            return;
+        }
         const postData = {
             method: 'POST',
             headers: {
@@ -166,8 +170,6 @@ export default class Customer extends Component {
                 dataIndex: 'action',
                 width: '30%',
                 render: (text, record) => {
-                    console.log(record);
-                    const { customerId } = record;
                     return (
                         <span>
                             <Button type="primary" onClick={() => this.updateCustomerAddress(record)}> update address</Button>
