@@ -7,10 +7,11 @@ import { params } from '../utils';
 
 
 export default class Review extends Component {
-    state = { 
+    state = {
         data: [],
+        filterByRatingData: [],
         loading: false,
-     };
+    };
 
     async componentDidMount() {
         const response = await fetch( `/getAllReviews`, {
@@ -39,46 +40,61 @@ export default class Review extends Component {
         };
     }
 
+    handleFilterByRating = async (record) => {
+        const rating = record.rating;
+        const filterByRatingResponse = await fetch(`/filterByRating?rating=${rating}`, {
+            method: 'get'
+        } );
+        const filterByRatingResults = await filterByRatingResponse.json();
+
+        const filterByRatingData = filterByRatingResults.map((info, i) => {
+            return {
+                key: i,
+                ...info
+            };
+        })
+        this.setState({filterByRatingData});
+    }
 
     render() {
 
-        const { data } = this.state;
+        const { data, filterByRatingData } = this.state;
         if ( data ) {
             const columns = [{
                 title: 'ReviewID',
                 dataIndex: 'reviewId',
                 width: '10%',
-            }, 
-            {
-                title: 'Customer Name',
-                dataIndex: 'customerName',
-                width: '20%',
             },
-            {
-                title: 'Restaurant Name',
-                dataIndex: 'restaurantName',
-                width: '10%'
-            },
-            {
-                title: 'Deliverer Name',
-                dataIndex: 'delivererName',
-                width: '10%',
-            },
-            {
-                title: 'Comment',
-                dataIndex: 'comment',
-                width: '10%',
-            },
-            {
-                title: 'Rating',
-                dataIndex: 'rating',
-                width: '30%',
+                {
+                    title: 'Customer Name',
+                    dataIndex: 'customerName',
+                    width: '20%',
+                },
+                {
+                    title: 'Restaurant Name',
+                    dataIndex: 'restaurantName',
+                    width: '10%'
+                },
+                {
+                    title: 'Deliverer Name',
+                    dataIndex: 'delivererName',
+                    width: '10%',
+                },
+                {
+                    title: 'Comment',
+                    dataIndex: 'comment',
+                    width: '10%',
+                },
+                {
+                    title: 'Rating',
+                    dataIndex: 'rating',
+                    width: '30%',
 
-            }];            
-    
+                }];
 
-        return (
-            <div>
+
+            return (
+                <div>
                     <Table
                         bordered
                         dataSource={data}
@@ -86,9 +102,9 @@ export default class Review extends Component {
                         title={() => <b>All Reviews</b>}
                         pagination={false}
                     />
-            </div>
+                </div>
             );
         }
-        
+
     }
 }

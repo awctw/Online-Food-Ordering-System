@@ -63,8 +63,10 @@ public interface DataHandler {
     @Select("SELECT * FROM Payment")
     List<Payment> getAllPayments();
 
-    @Select("SELECT * FROM Review")
-    List<Review> getAllReviews();
+    @Select("SELECT R1.reviewId, C.name customerName, R2.name restaurantName, D.name delivererName, R1.comment, R1.rating " +
+            "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
+            "WHERE R1.customerId = C.customerId and R1.restaurantId = R2.restaurantId and R1.delivererId = D.delivererId")
+    List<ReviewDetails> getAllReviews();
 
     @Select("SELECT * FROM Review WHERE #{id} = Review.restaurantId")
     List<Review> getMatchingRestaurantReviews(Integer id);
