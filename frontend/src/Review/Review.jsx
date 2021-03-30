@@ -39,28 +39,6 @@ export default class Review extends Component {
         };
     }
 
-    insertNewReview = async (insertNewReview) => {
-        const postData = {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( { 
-                reviewId: insertNewReview.reviewId,
-                customerId: insertNewReview.customerId,
-                restaurantId: insertNewReview.restaurantId,
-                delivererId: insertNewReview.delivererId,
-                comment: insertNewReview.comment,
-                rating: insertNewReview.rating.replaceAll(" ","")
-             } ),
-        }
-
-        const upsertBuildList = await fetch( `/insertReview`, postData );
-        await upsertBuildList.json();
-        message.info( 'Data Submitted!' );
-        this.componentDidMount();
-    }
 
     render() {
 
@@ -72,18 +50,18 @@ export default class Review extends Component {
                 width: '10%',
             }, 
             {
-                title: 'CustomerID',
-                dataIndex: 'customerId',
+                title: 'Customer Name',
+                dataIndex: 'customerName',
                 width: '20%',
             },
             {
-                title: 'RestaurantID',
-                dataIndex: 'restaurantId',
+                title: 'Restaurant Name',
+                dataIndex: 'restaurantName',
                 width: '10%'
             },
             {
-                title: 'DelivererID',
-                dataIndex: 'delivererId',
+                title: 'Deliverer Name',
+                dataIndex: 'delivererName',
                 width: '10%',
             },
             {
@@ -96,77 +74,21 @@ export default class Review extends Component {
                 dataIndex: 'rating',
                 width: '30%',
 
-            }];
+            }];            
+    
 
-            return (
-                <div>
-                        <Table
-                            bordered
-                            dataSource={data}
-                            columns={columns}
-                            title={() => <b>All Reviews</b>}
-                            pagination={false}
-                        />
-                    <Divider type="horizontal" />
-                    <h3>Insert a new Review</h3>
-                    <Form
-                        labelCol= {{ span: 2 }}
-                        wrapperCol={{ span: 8 }}
-                        name="Insert a new Review"
-                        initialValues={{ remember: true }}
-                        onFinish={this.insertNewReview}
-                        // onFinishFailed={onFinishFailed}
-                        >
-                        <Form.Item
-                            label="CustomerID"
-                            name="customerId"
-                            rules={[{ required: true, message: 'Please input your CustomerID!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                            label="RestaurantID"
-                            name="restaurantId"
-                            rules={[{ required: true, message: 'Please input the RestaurantID!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                            label="DelivererID"
-                            name="delivererId"
-                            rules={[{ required: true, message: 'Please input the DelivererID!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                            label="Comment"
-                            name="comment"
-                            rules={[{ required: true, message: 'Please input your comment!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                            label="Rating"
-                            name="rating"
-                            rules={[{ required: true, message: 'Please input your rating!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item 
-                        wrapperCol={{ offset: 4, span: 8 }}
-                        >
-                            <Button type="primary" htmlType="submit">
-                            Submit
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </div>
+        return (
+            <div>
+                    <Table
+                        bordered
+                        dataSource={data}
+                        columns={columns}
+                        title={() => <b>All Reviews</b>}
+                        pagination={false}
+                    />
+            </div>
             );
         }
+        
     }
 }
