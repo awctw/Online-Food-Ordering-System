@@ -63,7 +63,7 @@ public interface DataHandler {
     @Select("SELECT * FROM Payment")
     List<Payment> getAllPayments();
 
-    @Select("SELECT r.reviewId, cName, rName, dName, r.comment, r.rating " +
+    @Select("SELECT r.reviewId, Customer.name customerName, Restaurant.name restaurantName, Deliverer.name delivererName, r.comment, r.rating " +
             "FROM Review r " +
             "INNER JOIN Customer ON Customer.customerId = r.customerId " +
             "INNER JOIN Restaurant ON Restaurant.restaurantId = r.restaurantId " +
