@@ -67,7 +67,13 @@ public interface DataHandler {
             "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
             "WHERE R1.customerId = C.customerId and R1.restaurantId = R2.restaurantId and R1.delivererId = D.delivererId " +
             "ORDER BY R1.reviewId ASC")
-    List<ReviewDetails> getAllReviews();
+    List<ReviewDetails> getAllDeliveryReviews();
+
+    @Select("SELECT R1.reviewId, C.name customerName, R2.name restaurantName, R1.comment, R1.rating " +
+            "FROM Review R1, Customer C, Restaurant R2 " +
+            "WHERE R1.customerId = C.customerId and R1.restaurantId = R2.restaurantId and R1.delivererId IS NULL " +
+            "ORDER BY R1.reviewId ASC")
+    List<ReviewDetails> getAllPickUpReviews();
 
     @Select("SELECT * FROM Review WHERE #{id} = Review.restaurantId")
     List<Review> getMatchingRestaurantReviews(Integer id);

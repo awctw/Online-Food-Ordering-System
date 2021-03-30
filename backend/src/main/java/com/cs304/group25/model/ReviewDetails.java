@@ -17,7 +17,15 @@ public class ReviewDetails {
             this.rating = rating;
         }
 
-        public Integer getReviewId() {
+    public ReviewDetails(Integer reviewId, String customerName, String restaurantName, String comment, Integer rating) {
+        this.reviewId = reviewId;
+        this.customerName = customerName;
+        this.restaurantName = restaurantName;
+        this.comment = comment;
+        this.rating = rating;
+    }
+
+    public Integer getReviewId() {
             return reviewId;
         }
 

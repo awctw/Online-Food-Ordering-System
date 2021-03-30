@@ -34,7 +34,14 @@ public class FoodService {
     }
 
     public List<ReviewDetails> getAllReviews() {
-        return dataHandler.getAllReviews();
+        List<ReviewDetails> allDeliveryReviews = dataHandler.getAllDeliveryReviews();
+        List<ReviewDetails> allPickUpReviews = dataHandler.getAllPickUpReviews();
+        for (ReviewDetails r : allPickUpReviews) {
+            r.setDelivererName("/");
+        }
+        List<ReviewDetails> newlist = new ArrayList<ReviewDetails>(allDeliveryReviews);
+        newlist.addAll(allPickUpReviews);
+        return newlist;
     }
 
     public List<Payment> getAllPayments() {

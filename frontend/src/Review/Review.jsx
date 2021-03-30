@@ -73,12 +73,12 @@ export default class Review extends Component {
                 {
                     title: 'Comment',
                     dataIndex: 'comment',
-                    width: '10%',
+                    width: '40%',
                 },
                 {
                     title: 'Rating',
                     dataIndex: 'rating',
-                    width: '30%',
+                    width: '10%',
 
                 }];
 
