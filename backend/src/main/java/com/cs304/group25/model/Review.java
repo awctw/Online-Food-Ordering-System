@@ -8,7 +8,7 @@ public class Review {
     private String comment;
     private Integer rating;
 
-    public Review(Integer reviewId, Integer customerId, String comment, Integer rating, Integer restaurantId, Integer delivererId) {
+    public Review(Integer reviewId, Integer customerId, Integer restaurantId, Integer delivererId, String comment, Integer rating) {
         this.reviewId = reviewId;
         this.customerId = customerId;
         this.comment = comment;

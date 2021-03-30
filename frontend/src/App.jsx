@@ -7,6 +7,7 @@ import enUS from 'antd/lib/locale-provider/en_US';
 
 import './App.css';
 import { Customer, customerDetails, customerPlaceOrder } from './Customer';
+import Review from './Review/Review';
 
 const { Header, Content, Sider } = Layout;
 
@@ -34,7 +35,7 @@ export default class App extends Component {
                             style={{ height: '100%', borderRight: 0 }}
                         >
                             <Menu.Item key="1"><Link to="/customer">Customer</Link></Menu.Item>
-                            <Menu.Item key="2">Restaurant</Menu.Item>
+                            <Menu.Item key="2"><Link to="/review">Review</Link></Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: '0 24px 24px' }}>
@@ -43,6 +44,7 @@ export default class App extends Component {
                                 <Route path="/customer" component={Customer} />
                                 <Route path="/customerDetails" component={customerDetails} />
                                 <Route path="/customerPlaceOrder" component={customerPlaceOrder} />
+                                <Route path="/review" component={Review} />
                                 {/* <Route path="/dashboard" component={Dashboard} />
                                 <Route path="/tests/:type" component={TopLevelBuilds} />
                                 <Route path="/output/:outputType" component={Output} />
