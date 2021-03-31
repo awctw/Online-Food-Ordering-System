@@ -58,7 +58,7 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/showRestaurantRanking")
-    public List<Restaurant> showRestaurantRanking() {
+    public List<String> showRestaurantRanking() {
         return foodService.showRestaurantRanking();
     }
 
@@ -70,12 +70,15 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/getRestaurantOrders")
-    public List<Restaurant> getRestaurantOrders(int customerId) {
+    public List<String> getRestaurantOrders(@RequestParam int customerId) {
         return foodService.getRestaurantOrders(customerId);
     }
 
+    @GetMapping("/getVipCustomer")
+    public List<Customer> getVipCustomer() { return foodService.getVipCustomer(); }
+
     @GetMapping("/getCheapRestaurant")
-    public List<Restaurant> getCheapRestaurant() { return foodService.getCheapRestaurant(); }
+    public List<String> getCheapRestaurant() { return foodService.getCheapRestaurant(); }
 
     @PostMapping("/insertCustomer")
     public Integer insertCustomer(@RequestBody Customer customer){

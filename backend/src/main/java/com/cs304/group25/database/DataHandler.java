@@ -111,14 +111,14 @@ public interface DataHandler {
     @Select("SELECT rest.name FROM Restaurant rest, Review r " +
             "WHERE rest.restaurantId = r.restaurantId " +
             "GROUP BY rest.name ORDER BY AVG(r.rating) DESC")
-    List<Restaurant> showRestaurantRanking();
+    List<String> showRestaurantRanking();
 
 
     // Aggregation 2
     @Select("SELECT r.name FROM Restaurant r, `Order` o, Customer c " +
             "WHERE o.customerId = #{customerId} AND o.restaurantId = r.restaurantId AND c.customerID = #{customerId} " +
-            "GROUP BY r.name HAVING COUNT(*) >= 1")
-    List<Restaurant> getRestaurantOrders(int customerId);
+            "GROUP BY r.name HAVING COUNT(*) > 1")
+    List<String> getRestaurantOrders(int customerId);
 
     //Still have error in it
 //    @Select("SELECT r.name, AVG(f1.price) FROM Restaurant r, Menu m, Food f1 " +
@@ -137,7 +137,21 @@ public interface DataHandler {
                                                           "WHERE r2.restaurantId = m2.restaurantId AND " +
                                                                 "m2.menuId = f2.menuId " +
                                                           "GROUP BY r2.name)")
-    List<Restaurant> getCheapRestaurant();
+    List<String> getCheapRestaurant();
+
+    //    @Select("SELECT c.name FROM Customer c " +
+//         "WHERE NOT EXISTS " +
+//               "(SELECT o.restaurantId FROM `Order` o " +
+//               "WHERE o.customerId = c.customerId)")
+
+    @Select("SELECT * FROM Customer c " +
+            "WHERE NOT EXISTS " +
+            "(SELECT r.restaurantId FROM Restaurant r " +
+            "WHERE NOT EXISTS " +
+            "(SELECT o.orderId FROM `Order` o " +
+            "WHERE r.restaurantId = o.restaurantId AND o.customerId = c.customerId))")
+    List<Customer> getVipCustomer();
+
 
     @Select("SELECT M.type, F.foodId, price, name, description " +
             "FROM Food F, Menu M " +
