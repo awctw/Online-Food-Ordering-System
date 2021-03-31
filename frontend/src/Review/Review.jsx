@@ -129,23 +129,23 @@ export default class Review extends Component {
                 <br />
                 <br />
                 <Form
-                        labelCol= {{ span: 2 }}
-                        wrapperCol={{ span: 2 }}
+                        labelCol= {{ span: 4 }}
+                        wrapperCol={{ span: 5 }}
                         initialValues={{ remember: true }}
                         onFinish={this.handlefilterRating}
                         >
                         <Form.Item
-                            label="Filter by Ranking"
+                            label="Filter by Ranking Greater Than or Equal to"
                             name="rating"
                         >
                             <Input />
                         </Form.Item>
                         <Form.Item 
-                        wrapperCol={{ offset: 2, span: 2 }}
+                        wrapperCol={{ offset: 4, span: 8 }}
                         >
 
                             <Button type="primary" htmlType="submit">
-                            Filter by Ranking
+                            Filter by Ranking 
                             </Button>
                         </Form.Item>
                     </Form>
