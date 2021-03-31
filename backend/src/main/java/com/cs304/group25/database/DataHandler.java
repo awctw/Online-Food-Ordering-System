@@ -84,12 +84,9 @@ public interface DataHandler {
     @Select("SELECT R.name, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
 
-    @Select("SELECT R1.reviewId " +
-            "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
-            "WHERE R1.customerId = C.customerId AND " +
-            "R1.restaurantId = R2.restaurantId AND " +
-            "R1.delivererId = D.delivererId AND " +
-            "R1.rating >= #{rating}")
+    @Select("SELECT R.reviewId " +
+            "FROM Review R " +
+            "WHERE R.rating >= #{rating}")
     List<Review.ReviewSingle> filterByRating(int rating);
 
     @Select("SELECT Food.foodId, R.name name, Food.name foodName, Food.price, Food.description " +
