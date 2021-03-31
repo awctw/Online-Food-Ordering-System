@@ -7,11 +7,11 @@ import { params } from '../utils';
 
 
 export default class Review extends Component {
-    state = {
+    state = { 
         data: [],
-        filterByRatingData: [],
+        showRestaurantRankingData: [],
         loading: false,
-    };
+     };
 
     async componentDidMount() {
         const response = await fetch( `/getAllReviews`, {
@@ -30,61 +30,94 @@ export default class Review extends Component {
         }
     }
 
-    handleFilterByRating = async (record) => {
+
+    handlefilterRating = async (record) => {
         const rating = record.rating;
-        const filterByRatingResponse = await fetch(`/filterByRating?rating=${rating}`, {
+        if (!rating) {
+            this.componentDidMount();
+        } else {
+        const response = await fetch( `/filterByRating?rating=${rating}`, {
             method: 'get'
         } );
-        const filterByRatingResults = await filterByRatingResponse.json();
+        const results = await response.json();
+        let reviewIdArray = [];
+        results.map(result => {
+            reviewIdArray.push(result.reviewId);
+        })
+        const {data} = this.state;
+        let filterData = [];
+        data.map(d => {
+            if (reviewIdArray.includes(d.reviewId)) filterData.push(d);
+        })
+        this.setState({
+            data: filterData
+        })
+        }
+    }
 
-        const filterByRatingData = filterByRatingResults.map((info, i) => {
+    handleShowRanking = async () => {
+        const response = await fetch( `/showRestaurantRanking`, {
+            method: 'get'
+        } );
+        const results = await response.json();
+
+        const showRestaurantRankingData = results.map(( info, i ) => {
             return {
                 key: i,
                 ...info
             };
-        })
-        this.setState({filterByRatingData});
+        } )
+        this.setState( {showRestaurantRankingData } );
     }
+    
 
     render() {
 
-        const { data, filterByRatingData } = this.state;
+        const { data, showRestaurantRankingData} = this.state;
         if ( data ) {
             const columns = [{
                 title: 'ReviewID',
                 dataIndex: 'reviewId',
                 width: '10%',
+            }, 
+            {
+                title: 'Customer Name',
+                dataIndex: 'customerName',
+                width: '20%',
             },
-                {
-                    title: 'Customer Name',
-                    dataIndex: 'customerName',
-                    width: '20%',
-                },
+            {
+                title: 'Restaurant Name',
+                dataIndex: 'restaurantName',
+                width: '10%'
+            },
+            {
+                title: 'Deliverer Name',
+                dataIndex: 'delivererName',
+                width: '10%',
+            },
+            {
+                title: 'Comment',
+                dataIndex: 'comment',
+                width: '10%',
+            },
+            {
+                title: 'Rating',
+                dataIndex: 'rating',
+                width: '30%',
+
+            }];        
+            
+            const showRestaurantRankingColumns = [
                 {
                     title: 'Restaurant Name',
-                    dataIndex: 'restaurantName',
+                    dataIndex: 'name',
                     width: '10%'
-                },
-                {
-                    title: 'Deliverer Name',
-                    dataIndex: 'delivererName',
-                    width: '10%',
-                },
-                {
-                    title: 'Comment',
-                    dataIndex: 'comment',
-                    width: '40%',
-                },
-                {
-                    title: 'Rating',
-                    dataIndex: 'rating',
-                    width: '10%',
+                }
+            ];
+    
 
-                }];
-
-
-            return (
-                <div>
+        return (
+            <div>
                     <Table
                         bordered
                         dataSource={data}
@@ -92,9 +125,59 @@ export default class Review extends Component {
                         title={() => <b>All Reviews</b>}
                         pagination={false}
                     />
-                </div>
+
+                <br />
+                <br />
+                <Form
+                        labelCol= {{ span: 2 }}
+                        wrapperCol={{ span: 2 }}
+                        initialValues={{ remember: true }}
+                        onFinish={this.handlefilterRating}
+                        >
+                        <Form.Item
+                            label="Filter by Ranking"
+                            name="rating"
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item 
+                        wrapperCol={{ offset: 2, span: 2 }}
+                        >
+
+                            <Button type="primary" htmlType="submit">
+                            Filter by Ranking
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                <br />
+                <br />
+
+                <Form
+                        labelCol= {{ span: 2 }}
+                        wrapperCol={{ span: 8 }}
+                        initialValues={{ remember: true }}
+                        onFinish={this.handleShowRanking}
+                        >
+
+                        <Form.Item 
+                        wrapperCol={{ offset: 0, span: 8 }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                             Rank Restaurants By Ratings
+                            </Button>
+                        </Form.Item>
+                </Form>
+
+                <Table
+                    bordered
+                    dataSource={showRestaurantRankingData}
+                    columns={showRestaurantRankingColumns}
+                    title={() => <b>Restaurants Rating from Highest to Lowest</b>}
+                    pagination={false}
+                />
+            </div>
             );
         }
-
+        
     }
 }

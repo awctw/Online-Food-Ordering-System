@@ -84,8 +84,18 @@ public interface DataHandler {
     @Select("SELECT R.name, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
 
-    @Select("SELECT * FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId WHERE rating >= #{rating}")
-    List<Restaurant> filterByRating(int rating);
+/*    @Select("SELECT Restaurant.name, Review.comment, Review.rating " +
+            "FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId " +
+            "WHERE rating >= #{rating}")
+    List<RestaurantReviews> filterByRating(int rating);*/
+
+    @Select("SELECT R1.reviewId, C.name customerName, R2.name restaurantName, D.name delivererName, R1.comment, R1.rating " +
+            "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
+            "WHERE R1.customerId = C.customerId AND " +
+            "R1.restaurantId = R2.restaurantId AND " +
+            "R1.delivererId = D.delivererId AND " +
+            "R1.rating >= #{rating}")
+    List<ReviewDetails> filterByRating(int rating);
 
     @Select("SELECT Food.foodId, R.name name, Food.name foodName, Food.price, Food.description " +
             "FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId " +
@@ -111,7 +121,7 @@ public interface DataHandler {
     @Select("SELECT rest.name FROM Restaurant rest, Review r " +
             "WHERE rest.restaurantId = r.restaurantId " +
             "GROUP BY rest.name ORDER BY AVG(r.rating) DESC")
-    List<String> showRestaurantRanking();
+    List<Restaurant.RestaurantTop> showRestaurantRanking();
 
 
     // Aggregation 2
