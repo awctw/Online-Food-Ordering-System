@@ -84,18 +84,13 @@ public interface DataHandler {
     @Select("SELECT R.name, R.address, R.category FROM Restaurant R WHERE #{cat} = R.category")
     List<Restaurant.RestaurantCol> filterByCategory(String cat);
 
-/*    @Select("SELECT Restaurant.name, Review.comment, Review.rating " +
-            "FROM Restaurant INNER JOIN Review ON Restaurant.restaurantId = Review.restaurantId " +
-            "WHERE rating >= #{rating}")
-    List<RestaurantReviews> filterByRating(int rating);*/
-
-    @Select("SELECT R1.reviewId, C.name customerName, R2.name restaurantName, D.name delivererName, R1.comment, R1.rating " +
+    @Select("SELECT R1.reviewId " +
             "FROM Review R1, Customer C, Restaurant R2, Deliverer D " +
             "WHERE R1.customerId = C.customerId AND " +
             "R1.restaurantId = R2.restaurantId AND " +
             "R1.delivererId = D.delivererId AND " +
             "R1.rating >= #{rating}")
-    List<ReviewDetails> filterByRating(int rating);
+    List<Review.ReviewSingle> filterByRating(int rating);
 
     @Select("SELECT Food.foodId, R.name name, Food.name foodName, Food.price, Food.description " +
             "FROM Restaurant R INNER JOIN Menu ON R.restaurantId= Menu.restaurantId " +
@@ -110,14 +105,6 @@ public interface DataHandler {
     Integer lastPrimaryId();
 
     // Aggregation 1
-//    @Select("SELECT rest.Name, AVG(r.rating) FROM Restaurant rest INNER JOIN Review r " +
-//            "ON rest.RestaurantID = r.RestaurantID " +
-//            "WHERE r.rating >= 3 " +
-//           // "WHERE AVG(r.rating) >= 3 " +
-//            "GROUP BY rest.Name ORDER BY rest.Name DESC")
-//    List<Restaurant> showAvgRating();
-
-    // Aggregation 1
     @Select("SELECT rest.name FROM Restaurant rest, Review r " +
             "WHERE rest.restaurantId = r.restaurantId " +
             "GROUP BY rest.name ORDER BY AVG(r.rating) DESC")
@@ -130,15 +117,6 @@ public interface DataHandler {
             "GROUP BY r.name HAVING COUNT(*) > 1")
     List<String> getRestaurantOrders(int customerId);
 
-    //Still have error in it
-//    @Select("SELECT r.name, AVG(f1.price) FROM Restaurant r, Menu m, Food f1 " +
-//            "WHERE r.restaurantId = m.restaurantId AND " +
-//                  "m.menuId = f1.menuId " +
-//            "GROUP BY r.name HAVING AVG(f1.price) <= all " +
-//                                                        ("SELECT AVG(f2.price) " +
-//                                                        "FROM Restaurant r, Menu m, Food f2 " +
-//                                                        "GROUP BY r.name"))
-//    List<Restaurant> getCheapRestaurant();
     @Select("SELECT r1.name FROM Restaurant r1, Menu m1, Food f1 " +
             "WHERE r1.restaurantId = m1.restaurantId AND " +
                   "m1.menuId = f1.menuId " +
@@ -149,10 +127,6 @@ public interface DataHandler {
                                                           "GROUP BY r2.name)")
     List<String> getCheapRestaurant();
 
-    //    @Select("SELECT c.name FROM Customer c " +
-//         "WHERE NOT EXISTS " +
-//               "(SELECT o.restaurantId FROM `Order` o " +
-//               "WHERE o.customerId = c.customerId)")
 
     @Select("SELECT * FROM Customer c " +
             "WHERE NOT EXISTS " +

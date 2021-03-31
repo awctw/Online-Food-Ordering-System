@@ -17,6 +17,23 @@ public class Review {
         this.delivererId = delivererId;
     }
 
+    public static class ReviewSingle{
+        private Integer reviewId;
+
+        public ReviewSingle(Integer reviewId) {
+            this.reviewId = reviewId;
+        }
+
+        public Integer getReviewId() {
+            return reviewId;
+        }
+
+        public void setReviewId(Integer reviewId) {
+            this.reviewId = reviewId;
+        }
+
+    }
+
     public Integer getReviewId() {
         return reviewId;
     }

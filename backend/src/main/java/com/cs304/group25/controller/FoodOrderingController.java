@@ -5,9 +5,7 @@ import com.cs304.group25.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -47,13 +45,11 @@ public class FoodOrderingController {
 
     @GetMapping("/filterByCategory")
     public List<Restaurant.RestaurantCol> filterByCategory(@RequestParam String category) {
-        //category = "Dessert";
         return foodService.filterByCategory(category);
     }
 
     @GetMapping("/filterByRating")
-    public List<ReviewDetails> filterByRating(@RequestParam Integer rating) {
-        //rating = 3;
+    public List<Review.ReviewSingle> filterByRating(@RequestParam Integer rating) {
         return foodService.filterByRating(rating);
     }
 
@@ -62,10 +58,8 @@ public class FoodOrderingController {
         return foodService.showRestaurantRanking();
     }
 
-    // Generated new table getRestaurantMenuItems
     @GetMapping("/getRestaurantMenuItems")
     public List<RestaurantMenuItems> getRestaurantMenuItems(@RequestParam String menuType, @RequestParam int restaurantId) {
-        //menuType = "Lunch";
         return foodService.getRestaurantMenuItems(menuType, restaurantId);
     }
 

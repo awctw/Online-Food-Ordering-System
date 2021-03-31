@@ -87,7 +87,7 @@ public class FoodService {
         return dataHandler.filterByCategory(category);
     }
 
-    public List<ReviewDetails> filterByRating(int rating) {
+    public List<Review.ReviewSingle> filterByRating(int rating) {
         return dataHandler.filterByRating(rating);
     }
 
