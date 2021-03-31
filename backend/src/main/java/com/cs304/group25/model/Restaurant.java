@@ -47,9 +47,28 @@ public class Restaurant {
         }
 
 
+
     }
 
-    public Restaurant(Integer restaurantId, String name, String category, String address, String postCode, String operatingHours) {
+    public static class RestaurantTop {
+        private String name;
+
+        public RestaurantTop(String name) {
+            this.name = name;
+
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+    }
+
+        public Restaurant(Integer restaurantId, String name, String category, String address, String postCode, String operatingHours) {
         this.restaurantId = restaurantId;
         this.name = name;
         this.category = category;

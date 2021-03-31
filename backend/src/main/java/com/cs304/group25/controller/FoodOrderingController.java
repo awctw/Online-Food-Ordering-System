@@ -52,13 +52,13 @@ public class FoodOrderingController {
     }
 
     @GetMapping("/filterByRating")
-    public List<Restaurant> filterByRating(@RequestParam Integer rating) {
+    public List<ReviewDetails> filterByRating(@RequestParam Integer rating) {
         //rating = 3;
         return foodService.filterByRating(rating);
     }
 
     @GetMapping("/showRestaurantRanking")
-    public List<String> showRestaurantRanking() {
+    public List<Restaurant.RestaurantTop> showRestaurantRanking() {
         return foodService.showRestaurantRanking();
     }
 

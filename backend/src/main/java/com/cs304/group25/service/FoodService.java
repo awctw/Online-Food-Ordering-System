@@ -87,7 +87,7 @@ public class FoodService {
         return dataHandler.filterByCategory(category);
     }
 
-    public List<Restaurant> filterByRating(int rating) {
+    public List<ReviewDetails> filterByRating(int rating) {
         return dataHandler.filterByRating(rating);
     }
 
@@ -99,7 +99,7 @@ public class FoodService {
          dataHandler.deleteOrderDetails(order, id);
     }
 
-    public List<String> showRestaurantRanking() {
+    public List<Restaurant.RestaurantTop> showRestaurantRanking() {
         return dataHandler.showRestaurantRanking();
     }
 
