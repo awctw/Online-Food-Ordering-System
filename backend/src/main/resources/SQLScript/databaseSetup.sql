@@ -300,11 +300,150 @@ VALUES ('7388 Kingsway', 'Marry', '7782513635','marry@gmail.com','V3N0G9');
 INSERT INTO Customer(address, name, phoneNumber, email, postCode)
 VALUES ('UBC', 'Mark', '7782513335','mark@gmail.com','V6T1Z4');
 
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
+VALUES ('6090 Iona Drive', 'Isabelle', '7782512289','isabelle@gmail.com','V6T1Z1');
+
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
+VALUES ('6920 Gilley Ave', 'Tracy', '7786920278','tracy@gmail.com','V5J4W7');
+
+INSERT INTO Customer(address, name, phoneNumber, email, postCode)
+VALUES ('7733 Firbridge Way', 'John', '7786857809','john@gmail.com','V6X2A9');
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (1, 1, 'Do not need utensils','Preparing',50);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (2, 1, 'Less oil','Done',20);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (3, 1, 'No ice, half sweet','Done', 12);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 1, 'Less oil','Preparing',60);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 1, 'Less salt','Order Accepted',98);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 28);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 3, 'Less oil','Preparing',35);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 4, 'Less salt','Order Accepted',86);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 5, 'No utensil please','Preparing',87);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 5, 'Less oil please','Order Accepted',105);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (1, 1, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (2, 4, 1);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (3, 9, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (4, 15, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (5, 31, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (6, 10, 1);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (7, 23, 1);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (8, 32, 4);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (9, 24, 3);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (10, 33, 1);
+
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
 VALUES (1, 1, 1,'Fast delivery and fresh food. Recommend!',5);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (1, 2, 4,'Good food and selection, will order again.',4);
 
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
 VALUES (2, 1, 2,'Food arrived cold and stale. Do not recommend!',1);
 
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
-VALUES (1, 2, 4,'Good food and selection, will order again.',4);
+VALUES (2, 2, 5,'Nice food and good packages, will order again.',4);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (3, 3, 6,'Nice bubble tea!',5);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (3, 4, 1,'Tasty food, will order again!',5);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (4, 3, 6,'A lot variety for bubble tea, GOOD!',5);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (4, 5, 6,'Flavor is a little bit too strong',3);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (5, 4, 2,'Food is average, not bad not good',3);
+
+INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
+VALUES (5, 5, 3,'Good taste and good package, Recommend!',4);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (1, 2);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (2, 3);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (3, 2);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (4, 2);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (5, 4);
+
+INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
+VALUES ('4908398040992998', 1, 'Visa', 1222,'Marry', '099');
+
+INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
+VALUES ('4303399040992978', 2, 'Visa', 1123,'Mark', '109');
+
+INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
+VALUES ('4020379041992778', 3, 'Visa', 0823,'Isabelle', '083');
+
+INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
+VALUES ('4209377057882338', 4, 'Visa', 0522,'Tracy', '889');
+
+INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
+VALUES ('4025309741682098', 5, 'Visa', 0124,'John', '189');
+
+INSERT INTO PickUp(orderId)
+VALUES (6);
+
+INSERT INTO PickUp(orderId)
+VALUES (7);
+
+INSERT INTO PickUp(orderId)
+VALUES (8);
+
+INSERT INTO PickUp(orderId)
+VALUES (9);
+
+INSERT INTO PickUp(orderId)
+VALUES (10);
+
+
+
+
