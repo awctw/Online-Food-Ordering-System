@@ -208,7 +208,7 @@ export default class Customer extends Component {
                             pagination={false}
                         />
                     <Divider type="horizontal" />
-                    <Button type="primary" onClick={this.vipCustomer}>Show Customers who have ordered all restaurants</Button>
+                    <Button type="primary" onClick={this.vipCustomer}>Show Customers who have Ordered from All Restaurants</Button>
                     <pre className="card-body">{vipCustomer}</pre>
                     <Divider type="horizontal" />
                     <h3>Insert a new Customer</h3>
