@@ -2,13 +2,13 @@ package com.cs304.group25.model;
 
 public class Payment {
     private String cardId;
-    private String customerId;
+    private Integer customerId;
     private String cardType;
     private Integer expireDate;
     private String cardHolderName;
     private String securityCode;
 
-    public Payment(String cardId, String customerId, String cardType, Integer expireDate, String cardHolderName, String securityCode) {
+    public Payment(String cardId, Integer customerId, String cardType, Integer expireDate, String cardHolderName, String securityCode) {
         this.cardId = cardId;
         this.customerId = customerId;
         this.cardType = cardType;
@@ -25,11 +25,11 @@ public class Payment {
         this.cardId = cardId;
     }
 
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
