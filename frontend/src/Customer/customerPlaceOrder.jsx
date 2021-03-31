@@ -284,7 +284,6 @@ export default class customerShowAllFood extends Component {
                         onFinish={this.handleSubmit}
                         >
                         <Form.Item
-                            label="Your notes"
                             name="notes"
                         >
                             <Input />

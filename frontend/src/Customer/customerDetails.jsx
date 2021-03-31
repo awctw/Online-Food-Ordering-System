@@ -74,6 +74,10 @@ export default class customerDetails extends Component {
         this.setState( { filterByCategoryData } );
     }
 
+    getRestaurantOrders = () => {
+        const {customerId} = this.state;
+    }
+
     render() {
         const { data, orderHistoryData, filterByCategoryData, customerId, customerInfo } = this.state;
         const orderHistoryColumns = [
@@ -235,6 +239,8 @@ export default class customerDetails extends Component {
                 />
                 <br />
                 <br />
+                <Button type="primary" onClick={this.getRestaurantOrders}>Restaurants ordered before</Button>
+                <pre className="card-body">{customerInfo}</pre>
                 <Table
                     bordered
                     dataSource={orderHistoryData}
