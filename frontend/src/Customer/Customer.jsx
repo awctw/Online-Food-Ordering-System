@@ -167,7 +167,7 @@ export default class Customer extends Component {
                 ),
             },
             {
-                title: 'Phone Numer',
+                title: 'Phone Number',
                 dataIndex: 'phoneNumber',
                 width: '10%'
             },
