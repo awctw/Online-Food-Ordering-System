@@ -55,7 +55,7 @@ class EditableCell extends Component {
 export default class Customer extends Component {
     state = { 
         data: [],
-        loading: false,
+        vipCustomer: ``
      };
 
     async componentDidMount() {
@@ -130,9 +130,25 @@ export default class Customer extends Component {
         this.componentDidMount();
     }
 
+    vipCustomer = async () => {
+        const vipResponse = await fetch( `/getVipCustomer`, {
+            method: 'get'
+        } );
+        const vipResults = await vipResponse.json();
+        let vipInfo = ``;
+        if (vipResults) {
+            vipResults.map (vip => {
+                vipInfo += vip.name + `  `
+            })
+        }
+        this.setState ({
+            vipCustomer: vipInfo
+        })
+    }
+
     render() {
 
-        const { data } = this.state;
+        const { data, vipCustomer } = this.state;
         if ( data ) {
             const columns = [{
                 title: 'Name',
@@ -191,6 +207,9 @@ export default class Customer extends Component {
                             title={() => <b>All Customers</b>}
                             pagination={false}
                         />
+                    <Divider type="horizontal" />
+                    <Button type="primary" onClick={this.vipCustomer}>Show Customers who have ordered all restaurants</Button>
+                    <pre className="card-body">{vipCustomer}</pre>
                     <Divider type="horizontal" />
                     <h3>Insert a new Customer</h3>
                     <Form

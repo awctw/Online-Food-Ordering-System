@@ -11,6 +11,8 @@ export default class customerDetails extends Component {
         filterByCategoryData: [],
         customerId: null,
         customerInfo: null,
+        orderInfo:``,
+        lowestAvgRestaurant:``
      };
 
     async componentDidMount() {
@@ -74,12 +76,35 @@ export default class customerDetails extends Component {
         this.setState( { filterByCategoryData } );
     }
 
-    getRestaurantOrders = () => {
+    getRestaurantOrders = async () => {
         const {customerId} = this.state;
+        const getRestaurantOrdersResponse = await fetch( `/getRestaurantOrders?customerId=${customerId}`, {
+            method: 'get'
+        } );
+        const getRestaurantOrdersResults = await getRestaurantOrdersResponse.json();
+        console.log(getRestaurantOrdersResults);
+        let orderInfo = ``;
+        if (getRestaurantOrdersResults) {
+            orderInfo = getRestaurantOrdersResults.join("  ,  ")
+        }
+        this.setState({
+            orderInfo
+        })
+    }
+
+    lowestAvgRestaurant = async () => {
+        const lowestAvgRestaurantResponse = await fetch( `/getCheapRestaurant`, {
+            method: 'get'
+        } );
+        const getRestaurantOrdersResults = await lowestAvgRestaurantResponse.json();
+
+        this.setState ({
+            lowestAvgRestaurant: getRestaurantOrdersResults[0]
+        })
     }
 
     render() {
-        const { data, orderHistoryData, filterByCategoryData, customerId, customerInfo } = this.state;
+        const { data, orderHistoryData, filterByCategoryData, customerId, customerInfo, orderInfo, lowestAvgRestaurant } = this.state;
         const orderHistoryColumns = [
             {
                 title: 'Order Id',
@@ -208,6 +233,8 @@ export default class customerDetails extends Component {
                     pagination={false}
                 />
                 <br />
+                <Button type="primary" onClick={this.lowestAvgRestaurant}>Show Restaurant with lowest avg price</Button>
+                <pre className="card-body">{lowestAvgRestaurant}</pre>
                 <br />
                 <Form
                         labelCol= {{ span: 2 }}
@@ -239,8 +266,8 @@ export default class customerDetails extends Component {
                 />
                 <br />
                 <br />
-                <Button type="primary" onClick={this.getRestaurantOrders}>Restaurants ordered before</Button>
-                <pre className="card-body">{customerInfo}</pre>
+                <Button type="primary" onClick={this.getRestaurantOrders}>Restaurants ordered at least twice</Button>
+                <pre className="card-body">{orderInfo}</pre>
                 <Table
                     bordered
                     dataSource={orderHistoryData}
