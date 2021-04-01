@@ -337,7 +337,7 @@ INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 28);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
-VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 35);
+VALUES (4, 2, 'Less salt', 35);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (4, 2, 'No utensils please','Order accepted', 98);
@@ -372,6 +372,12 @@ VALUES (4, 5, 'No utensil please','Preparing',87);
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (5, 5, 'Less oil please','Order Accepted',105);
 
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 2, 'No utensils please','Order accepted', 35);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 2, 'Less oil','Preparing', 25);
+
 INSERT INTO OrderDetail(orderId, foodId, quantity)
 VALUES (1, 1, 2);
 
@@ -400,7 +406,7 @@ INSERT INTO OrderDetail(orderId, foodId, quantity)
 VALUES (9, 9, 3);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (10, 11, 2);
+VALUES (10, 25, 2);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
 VALUES (11, 20, 3);
@@ -434,6 +440,12 @@ VALUES (20, 24, 3);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
 VALUES (21, 33, 1);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (22, 24, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (23, 33, 1);
 
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
 VALUES (1, 1, 1,'Fast delivery and fresh food. Recommend!',5);
@@ -479,6 +491,12 @@ VALUES (4, 2);
 
 INSERT INTO Delivery(orderId, delivererId)
 VALUES (5, 4);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (22, 2);
+
+INSERT INTO Delivery(orderId, delivererId)
+VALUES (23, 4);
 
 INSERT INTO Payment(cardId, customerId, cardType, expiredDate, cardHolderName, securityCode)
 VALUES ('4908398040992998', 1, 'Visa', 1222,'Marry', '099');
@@ -542,8 +560,3 @@ VALUES (20);
 
 INSERT INTO PickUp(orderId)
 VALUES (21);
-
-
-
-
-
