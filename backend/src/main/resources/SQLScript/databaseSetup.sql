@@ -319,16 +319,49 @@ INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (3, 1, 'No ice, half sweet','Done', 12);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (3, 1, 'No ice, half sweet','Done', 21);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (4, 1, 'Less oil','Preparing',60);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (5, 1, 'Less salt','Order Accepted',98);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (1, 2, 'Do not need utensils','Order accepted', 30);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (2, 2, 'Less oil','Order accepted', 21);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 28);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
-VALUES (4, 3, 'Less oil','Preparing',35);
+VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 35);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 2, 'No utensils please','Order accepted', 98);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 2, 'Less oil','Preparing', 53);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (1, 3, 'Less oil','Preparing',98);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (2, 3, 'Less oil','Done',24);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (3, 3, 'Half sweet','Done',35);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (3, 3, 'Half sweet','Done',13);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (4, 3, 'No utensils','Preparing',57);
+
+INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
+VALUES (5, 3, 'Less Salt','Done',24);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (5, 4, 'Less salt','Order Accepted',86);
@@ -349,25 +382,58 @@ INSERT INTO OrderDetail(orderId, foodId, quantity)
 VALUES (3, 9, 2);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (4, 15, 2);
+VALUES (4, 9, 2);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (5, 31, 2);
+VALUES (5, 15, 2);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (6, 10, 1);
+VALUES (6, 31, 2);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (7, 23, 1);
+VALUES (7, 2, 3);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (8, 32, 4);
+VALUES (8, 3, 1);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (9, 24, 3);
+VALUES (9, 9, 3);
 
 INSERT INTO OrderDetail(orderId, foodId, quantity)
-VALUES (10, 33, 1);
+VALUES (10, 11, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (11, 20, 3);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (12, 32, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (13, 2, 1);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (14, 3, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (15, 11, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (16, 13, 2);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (17, 21, 4);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (18, 31, 5);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (19, 32, 4);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (20, 24, 3);
+
+INSERT INTO OrderDetail(orderId, foodId, quantity)
+VALUES (21, 33, 1);
 
 INSERT INTO Review(customerId, restaurantId, delivererId, comment, rating)
 VALUES (1, 1, 1,'Fast delivery and fresh food. Recommend!',5);
@@ -443,6 +509,40 @@ VALUES (9);
 
 INSERT INTO PickUp(orderId)
 VALUES (10);
+
+INSERT INTO PickUp(orderId)
+VALUES (11);
+
+INSERT INTO PickUp(orderId)
+VALUES (12);
+
+INSERT INTO PickUp(orderId)
+VALUES (13);
+
+INSERT INTO PickUp(orderId)
+VALUES (14);
+
+INSERT INTO PickUp(orderId)
+VALUES (15);
+
+INSERT INTO PickUp(orderId)
+VALUES (16);
+
+INSERT INTO PickUp(orderId)
+VALUES (17);
+
+INSERT INTO PickUp(orderId)
+VALUES (18);
+
+INSERT INTO PickUp(orderId)
+VALUES (19);
+
+INSERT INTO PickUp(orderId)
+VALUES (20);
+
+INSERT INTO PickUp(orderId)
+VALUES (21);
+
 
 
 
