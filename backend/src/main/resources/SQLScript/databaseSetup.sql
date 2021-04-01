@@ -337,7 +337,7 @@ INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (3, 2, 'Room temp, 30% sweet','Order accepted', 28);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
-VALUES (4, 2, 'Less salt', 35);
+VALUES (4, 2, 'Less salt', 'Done', 35);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (4, 2, 'No utensils please','Order accepted', 98);
