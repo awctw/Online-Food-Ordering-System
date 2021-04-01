@@ -346,7 +346,7 @@ INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (5, 2, 'Less oil','Preparing', 53);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
-VALUES (1, 3, 'Less oil','Preparing',98);
+VALUES (1, 3, 'Less oil','Done',98);
 
 INSERT INTO `Order`(restaurantId, customerId, notes, status, totalPrice)
 VALUES (2, 3, 'Less oil','Done',24);
